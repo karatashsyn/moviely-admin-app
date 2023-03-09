@@ -3,9 +3,11 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import Movie from 'App/Models/Movie'
 import StoreMovieValidator from 'App/Validators/Movie/StoreMovieValidator'
 import UpdateMovieValidator from 'App/Validators/Movie/UpdateMovieValidator'
-
+import { TmdbMovieService } from 'App/Services/MovieServices/TMDB/TmdbMovieService'
 export default class MoviesController {
-  public async index({ request, response }: HttpContextContract) {
+  public movieService = new TmdbMovieService()
+
+  public async index({ request }: HttpContextContract) {
     try {
       const title = request.input('title')
       const limit = request.input('limit', 20)
@@ -20,9 +22,16 @@ export default class MoviesController {
             .whereIn('genre_id', genres)
         })
         .limit(limit)
-      return movies
+      const ownedMovies = movies.map((m) => {
+        return { ...m.$attributes, owned: true }
+      })
+      console.log(ownedMovies)
+
+      const nonOwnedMovies = await this.movieService.getMovies(title)
+      return [...ownedMovies, ...nonOwnedMovies]
     } catch (error) {
-      response.send(error)
+      console.log(error)
+      return error
     }
   }
 
@@ -49,7 +58,7 @@ export default class MoviesController {
       await movie?.merge(payload).save()
       response
         .status(200)
-        .json({ status: 'Success', message: 'Movie has been updated Successfully.', movie: movie })
+        .json({ status: 'Success', message: 'Movie has been updated Successfully.', movie })
     } catch (error) {
       return error
     }
@@ -57,7 +66,7 @@ export default class MoviesController {
 
   public async destroy({ request, response }: HttpContextContract) {
     try {
-      const movie = await Movie.findOrFail(request.param('id'))
+      const movie = await Movie.find(request.param('id'))
       await movie?.delete()
       response.status(204).json({
         status: 'Success',
