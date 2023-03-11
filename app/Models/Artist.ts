@@ -9,9 +9,7 @@ export default class Artist extends BaseModel {
 
   public fullName: string
 
-  public biography: string
-
-  public age: number
+  public biography: string | null
 
   public picture: string | null
 

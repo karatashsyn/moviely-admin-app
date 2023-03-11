@@ -8,10 +8,9 @@ export default class extends BaseSchema {
       table.bigIncrements('id').primary().unique()
       table.bigInteger('api_id').unique().nullable()
       table.string('full_name')
-      table.string('picture')
-      table.string('country')
-      table.text('biography')
-
+      table.string('picture').nullable()
+      table.string('country').nullable()
+      table.text('biography').nullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

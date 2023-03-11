@@ -3,7 +3,7 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import Movie from 'App/Models/Movie'
 import StoreMovieValidator from 'App/Validators/Movie/StoreMovieValidator'
 import UpdateMovieValidator from 'App/Validators/Movie/UpdateMovieValidator'
-import { TmdbMovieService } from 'App/Services/MovieServices/TMDB/TmdbMovieService'
+import { TmdbMovieService } from 'App/TmdbServices/MovieService'
 export default class MoviesController {
   public movieService = new TmdbMovieService()
 
@@ -12,9 +12,9 @@ export default class MoviesController {
       const title = request.input('title')
       const limit = request.input('limit', 20)
       const genres = request.input('genres')
-      const movies = await Movie.query()
+      const dbMovies = await Movie.query()
         .if(title, (q) => {
-          q.where('title', 'like', `%${title}%`)
+          q.whereLike('title', `%${title}%`)
         })
         .if(genres, (q) => {
           q.whereIn('id', Database.from('movie_genre'))
@@ -22,11 +22,9 @@ export default class MoviesController {
             .whereIn('genre_id', genres)
         })
         .limit(limit)
-      const ownedMovies = movies.map((m) => {
+      const ownedMovies = dbMovies.map((m) => {
         return { ...m.$attributes, owned: true }
       })
-      console.log(ownedMovies)
-
       const nonOwnedMovies = await this.movieService.getMovies(title)
       return [...ownedMovies, ...nonOwnedMovies]
     } catch (error) {
@@ -56,6 +54,8 @@ export default class MoviesController {
       const payload = await request.validate(UpdateMovieValidator)
       const movie = await Movie.find(request.param('id'))
       await movie?.merge(payload).save()
+      if (payload.genres) movie?.related('genres').sync(payload.genres)
+      if (payload.artists) movie?.related('artists').sync(payload.artists)
       response
         .status(200)
         .json({ status: 'Success', message: 'Movie has been updated Successfully.', movie })
