@@ -18,8 +18,6 @@ export class TmdbArtistService {
 
     const res = await axios.get(URL)
     const artists: Array<TmdbArtist> = await res.data.results
-    console.log(artists)
-
     const result: Array<AppArtist> = []
     await Promise.all(
       artists.map(async (a) => {

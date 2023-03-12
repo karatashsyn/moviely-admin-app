@@ -27,3 +27,4 @@ Route.get('/', async () => {
 Route.resource('movies', 'MoviesController').as('movies')
 Route.resource('genres', 'GenresController').as('genres')
 Route.resource('artists', 'ArtistsController').as('artists')
+Route.get('movies/service/populars', 'MoviesController.fetchPopulars')

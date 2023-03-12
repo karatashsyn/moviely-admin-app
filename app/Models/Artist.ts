@@ -5,7 +5,7 @@ export default class Artist extends BaseModel {
   @column({ isPrimary: true })
   public id: bigint
 
-  public apiId: bigint
+  public apiId: number | null
 
   public fullName: string
 

@@ -4,10 +4,20 @@ import Movie from 'App/Models/Movie'
 import StoreMovieValidator from 'App/Validators/Movie/StoreMovieValidator'
 import UpdateMovieValidator from 'App/Validators/Movie/UpdateMovieValidator'
 import { TmdbMovieService } from 'App/TmdbServices/MovieService'
+
 export default class MoviesController {
   public movieService = new TmdbMovieService()
 
-  public async index({ request }: HttpContextContract) {
+  public async fetchPopulars({ response }: HttpContextContract) {
+    try {
+      const movies = await this.movieService.getPopularMovies()
+      return movies
+    } catch (error) {
+      response.json({ error })
+    }
+  }
+
+  public async index({ request, response, view }: HttpContextContract) {
     try {
       const title = request.input('title')
       const limit = request.input('limit', 20)
@@ -25,11 +35,10 @@ export default class MoviesController {
       const ownedMovies = dbMovies.map((m) => {
         return { ...m.$attributes, owned: true }
       })
-      const nonOwnedMovies = await this.movieService.getMovies(title)
+      const nonOwnedMovies = await this.movieService.searchMovies(title)
       return [...ownedMovies, ...nonOwnedMovies]
     } catch (error) {
-      console.log(error)
-      return error
+      response.status(500).json({ Error: 'Ooops, something went wrong.' })
     }
   }
 
@@ -38,13 +47,14 @@ export default class MoviesController {
       const payload = await request.validate(StoreMovieValidator)
       const movie = new Movie()
       await movie.fill(payload).save()
+      if (payload.genres) movie?.related('genres').sync(payload.genres)
+      if (payload.artists) movie?.related('artists').sync(payload.artists)
       response.send({
-        status: 'Success',
+        status: 'success',
         message: 'Movie has been created successfully',
         movie: movie,
       })
     } catch (error) {
-      console.log(error)
       return error
     }
   }
@@ -56,9 +66,7 @@ export default class MoviesController {
       await movie?.merge(payload).save()
       if (payload.genres) movie?.related('genres').sync(payload.genres)
       if (payload.artists) movie?.related('artists').sync(payload.artists)
-      response
-        .status(200)
-        .json({ status: 'Success', message: 'Movie has been updated Successfully.', movie })
+      response.status(200).json(movie)
     } catch (error) {
       return error
     }
@@ -68,11 +76,17 @@ export default class MoviesController {
     try {
       const movie = await Movie.find(request.param('id'))
       await movie?.delete()
-      response.status(204).json({
-        status: 'Success',
-        message: 'Movie has been deleted Successfully.',
-        movie: {},
-      })
+      response.status(204).json({})
+    } catch (error) {
+      return error
+    }
+  }
+
+  public async show({ request, response, view }: HttpContextContract) {
+    try {
+      const movie = await Movie.find(request.param('id'))
+      if (movie) response.status(200).json(movie)
+      else return view.render('404')
     } catch (error) {
       return error
     }

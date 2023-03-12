@@ -6,10 +6,10 @@ export default class StoreMovieValidator {
 
   public schema = schema.create({
     title: schema.string({ trim: true }, [rules.required()]),
-    rating: schema.number.nullable([rules.range(0, 10)]),
-    apiId: schema.number.nullable([rules.unique({ table: 'movies', column: 'api_id' })]),
-    poster: schema.string.nullable([rules.url()]),
-    description: schema.string.optional({ trim: true }, [rules.minLength(24)]),
+    rating: schema.number.nullableAndOptional([rules.range(0, 10)]),
+    apiId: schema.number.nullableAndOptional([rules.unique({ table: 'movies', column: 'api_id' })]),
+    poster: schema.string.nullableAndOptional([rules.url()]),
+    description: schema.string({ trim: true }, [rules.minLength(24)]),
     artists: schema.array
       .optional()
       .members(schema.number([rules.exists({ table: 'artists', column: 'id' })])),
