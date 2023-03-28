@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="splitter">
+      <div class="landing-part half">
+        <div class="main-container">
+          <div class="header-container">
+            <h2 id="moviely">Moviely</h2>
+            <h2 id="admin">Admin</h2>
+          </div>
+          <div class="description-container">
+            <p>Make sure that your account is verified by super user so that you can log in.</p>
+          </div>
+        </div>
+        <div class="copyrights-container">
+          <span> © Moviely. All Rights Reserved. </span>
+        </div>
+      </div>
+
+      <div class="login-part half">
+        <div class="login-box">
+          <h1 class="login-title">Log In</h1>
+          <form action="#" class="login-form">
+            <div class="inputs-container">
+              <input type="text" name="email" class="inp email" placeholder="Email" />
+              <input type="text" name="password" class="inp password" placeholder="Password" />
+            </div>
+            <div class="buttons-container">
+              <button class="btn sign-in">Sign In</button>
+              <button class="btn sign-up">Sign Up</button>
+            </div>
+          </form>
+          <div class="or-seperator">
+            <span class="or-text">OR</span>
+          </div>
+          <button class="btn with-google">
+            <img class="google-icon" src="icons8-google-48 1.png" alt="" /> Continue with Google
+          </button>
+          <div class="forgot-password-container">
+            <a href="#">Forgot your password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    :root {
+      --extra-light: 100;
+      --light: 200;
+      --regular: 400;
+      --medium: 500;
+      --semi-bold: 600;
+      --bold: 700;
+      --extra-bold: 800;
+      --bg-white: #f5f5f5;
+      --bg-box: #ffffff;
+      --accent-brown: #f3c485;
+      --broken-white: #e6e6e6;
+      --input-white: rgb(246, 245, 245);
+      --black: #343434;
+      --stroke-black: #343434;
+      --accent-black: #525252;
+      --gray-1: #c9c9c9;
+      --gray-2: #a5a5a5;
+      --gray-3: #c5c5c5;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+
+    *,
+    ::before,
+    ::after {
+      font-family: Inter, sans-serif;
+      box-sizing: border-box !important;
+      margin: 0;
+      padding: 0;
+    }
+    .splitter {
+      display: flex;
+      height: 100vh;
+    }
+
+    .landing-part {
+      color: white;
+      flex-basis: 46%;
+      padding: 5rem 3rem 0rem 3rem;
+      background-image: url(pexels-adrien-olichon-3709369\ 1.png);
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .header-container > * {
+      font-weight: var(--medium);
+    }
+    .header-container #moviely {
+      font-size: 72px;
+    }
+    .header-container #admin {
+      color: var(--accent-brown);
+      font-size: 58px;
+    }
+    .description-container {
+      margin-top: 2rem;
+    }
+    .description-container > p {
+      font-size: 20px;
+    }
+
+    .copyrights-container {
+      text-align: center;
+      bottom: 0;
+      padding: 1rem 0;
+      width: 100%;
+    }
+    .copyrights-container span {
+      font-size: 0.6rem;
+      font-weight: 100;
+    }
+
+    .login-part {
+      padding: 1rem;
+      flex-basis: 60%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-basis: 100%;
+      max-width: 28rem;
+      max-height: 100%;
+      border: 1px solid var(--gray-1);
+      padding: 2rem;
+      border-radius: 4px;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2.4rem;
+    }
+
+    .login-title {
+      font-size: 50px;
+      font-weight: var(--medium);
+    }
+    .inputs-container,
+    .buttons-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .inp {
+      height: 2rem;
+      padding: 0 8px;
+      background-color: var(--input-white);
+      border: 1px solid var(--broken-white);
+      border-radius: 4px;
+    }
+    .inp::placeholder {
+      color: var(--gray-2);
+      font-size: 0.72rem;
+    }
+
+    .btn {
+      min-height: 2.6rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn.sign-in {
+      background-color: black;
+      color: white;
+    }
+    .btn.sign-up {
+      background-color: white;
+      color: black;
+      border-radius: 8px;
+      border: 2px solid var(--stroke-black);
+    }
+
+    .forgot-password-container {
+      text-align: end;
+      margin-top: 8px;
+      font-size: 0.6rem;
+    }
+    .or-text {
+      color: var(--accent-black);
+    }
+    .or-seperator {
+      margin: 1rem 0;
+      text-align: center;
+      position: relative;
+    }
+    .or-seperator::before {
+      position: absolute;
+      content: '';
+      width: 40%;
+      height: 1px;
+      left: 0;
+      top: 40%;
+      line-height: 100%;
+      background-color: var(--gray-1);
+    }
+
+    .or-seperator::after {
+      position: absolute;
+      content: '';
+      width: 40%;
+      height: 1px;
+      right: 0;
+      top: 40%;
+      background-color: var(--gray-1);
+    }
+    .btn.with-google {
+      min-height: 2.6rem;
+      background-color: white;
+      border: none;
+      color: var(--accent-black);
+      border: 1px solid rgb(236, 236, 236);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px 0 rgba(119, 119, 119, 0.25);
+      transition: scale 200ms;
+    }
+    .btn.with-google:hover {
+      scale: 1.02;
+    }
+    .google-icon {
+      margin-left: 1rem;
+      position: absolute;
+      left: 0;
+      height: 80%;
+      aspect-ratio: 1;
+    }
+
+    .forgot-password-container a {
+      color: var(--gray-2);
+    }
+
+    /* @media screen and (max-width: 768px) {
+      .splitter {
+        display: block;
+      }
+
+      .landing-part {
+        height: 100vh;
+      }
+      .login-part {
+        height: 746px;
+      }
+    } */
+    @media (max-aspect-ratio: 1) {
+      .landing-part {
+        flex-basis: 50%;
+      }
+      .splitter {
+        flex-direction: column;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .landing-part {
+        display: none;
+      }
+      .splitter {
+        justify-content: center;
+      }
+      .login-part {
+        height: 100vh;
+        display: flex;
+      }
+      .login-box {
+        border: none;
+      }
+    }
+  </style>
+</html>

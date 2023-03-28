@@ -17,11 +17,12 @@ export default class MoviesController {
     }
   }
 
-  public async index({ request, response, view }: HttpContextContract) {
+  public async index({ request, response }: HttpContextContract) {
     try {
       const title = request.input('title')
       const limit = request.input('limit', 20)
       const genres = request.input('genres')
+
       const dbMovies = await Movie.query()
         .if(title, (q) => {
           q.whereLike('title', `%${title}%`)
@@ -35,6 +36,7 @@ export default class MoviesController {
       const ownedMovies = dbMovies.map((m) => {
         return { ...m.$attributes, owned: true }
       })
+
       const nonOwnedMovies = await this.movieService.searchMovies(title)
       return [...ownedMovies, ...nonOwnedMovies]
     } catch (error) {

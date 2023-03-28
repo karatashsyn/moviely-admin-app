@@ -34,6 +34,7 @@ export class TmdbMovieService {
             rating: m.vote_average,
             description: m.overview,
             owned: false,
+            genres: m.genre_ids,
           })
         }
       })

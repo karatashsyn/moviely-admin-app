@@ -1,0 +1,29 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
+body {
+  background-color: #0d0c0f;
+  padding: 24px;
+}
+.pageWrapper {
+  background-color: #0d0c0f;
+  display: flex;
+  gap: 72px;
+}
+
+.navSection {
+  min-width: 280px;
+  background-color: #0d0c0f;
+  /* background-color: rgb(3, 138, 255); */
+  border-radius: 16px;
+}
+
+.moviesSection {
+  flex-basis: 100%;
+}

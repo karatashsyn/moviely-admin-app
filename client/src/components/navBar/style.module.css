@@ -1,0 +1,98 @@
+*,
+::before,
+::after {
+  /* border: 1px solid rgb(38, 108, 155); */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: calc(100vh - 48px);
+}
+
+.mainOptionsContainer {
+  padding: 24px 0;
+  border-top: 1px solid #323232;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.adminContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.adminFullName {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.adminRole {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #c0c0c0;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.optionName:hover,
+.logout:hover {
+  color: #a9a9a9;
+}
+
+.optionName {
+  font-size: 1.24rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.iconWrapper {
+  width: 22px;
+  height: 26.4px;
+}
+.iconWrapper svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logOutContainer {
+  margin-top: 64px;
+  margin-top: auto;
+  border-top: 1px solid #323232;
+  padding: 16px 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.logouticonwrapper {
+  width: 22px;
+  height: 26.4px;
+}
+.logouticonwrapper svg {
+  height: 100%;
+  width: 100%;
+}
+
+.logout {
+  font-size: 1.24rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.heroContainer {
+  overflow: hidden;
+  width: 48px;
+  height: 48px;
+}
+.heroImg {
+  border-radius: 50%;
+  max-width: 100%;
+  object-position: center;
+}
