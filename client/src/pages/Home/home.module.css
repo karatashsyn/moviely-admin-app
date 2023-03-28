@@ -16,6 +16,18 @@ body {
   display: flex;
   gap: 72px;
 }
+.popularsContainer {
+  max-width: 100%;
+  overflow-x: scroll;
+}
+.popularHeading,
+.myMoviesHeading {
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+.popularsContainer::-webkit-scrollbar {
+  width: 0;
+}
 
 .navSection {
   min-width: 280px;
@@ -25,5 +37,6 @@ body {
 }
 
 .moviesSection {
+  overflow-x: hidden;
   flex-basis: 100%;
 }

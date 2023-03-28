@@ -19,7 +19,7 @@
   border-top: 1px solid #323232;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 24px;
 }
 .adminContainer {
   display: flex;
@@ -39,22 +39,21 @@
 .option {
   display: flex;
   align-items: center;
-  gap: 12px;
+  cursor: pointer;
 }
-.optionName:hover,
+.option:hover .optionName,
 .logout:hover {
-  color: #a9a9a9;
+  color: #d60c0c;
 }
 
 .optionName {
   font-size: 1.24rem;
   font-weight: 500;
-  cursor: pointer;
   transition: all 0.2s;
 }
 
 .iconWrapper {
-  width: 22px;
+  width: 42px;
   height: 26.4px;
 }
 .iconWrapper svg {
@@ -72,7 +71,7 @@
   align-items: center;
 }
 .logouticonwrapper {
-  width: 22px;
+  width: 42px;
   height: 26.4px;
 }
 .logouticonwrapper svg {
