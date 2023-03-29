@@ -1,21 +1,24 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import styles from './style.module.css'
 import { Movie } from '../../Types/Movie'
+import PopularCard from './PopularCard/PopularCard'
 
 type Props = { popularMovies: Array<Movie> }
 
 //12 Popular Movie
 
 export default function Gallery({ popularMovies }: Props) {
+  const [galleryFade, setGalleryFade] = useState(false)
+  const openFade = () => {
+    setGalleryFade(true)
+  }
+  const closeFade = () => {
+    setGalleryFade(false)
+  }
   return (
-    <div className={styles.gallery}>
-      {popularMovies.map((m: any, index) => {
-        return (
-          <div className={styles.galleryMember}>
-            {/* <img src={m.poster} className={styles.memberPster} alt="Movie Poster" /> */}
-            <span className={styles.memberTitle}>{m.title}</span>
-          </div>
-        )
+    <div className={galleryFade ? `${styles.gallery} ${styles.faded}` : `${styles.gallery} `}>
+      {popularMovies.map((m: Movie) => {
+        return <PopularCard movie={m} movieHovered={openFade} movieLeaved={closeFade} />
       })}
     </div>
   )
