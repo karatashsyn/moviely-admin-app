@@ -1,0 +1,182 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: white;
+  box-sizing: border-box;
+}
+.card {
+  /* max-width: 320px; */
+  aspect-ratio: 0.72;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+.card:hover {
+  scale: 1.04;
+  box-shadow: 0 8px 24px -2px rgb(23, 23, 23);
+}
+.poster {
+  width: 100%;
+  height: 100%;
+  transition: all 0.6s;
+  object-fit: cover;
+}
+.ratingBox {
+  background-color: #323232;
+  position: absolute;
+  left: -78px;
+  top: 0;
+  padding: 1px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 14px 0 0 14px;
+  border-radius: 8px;
+  transition: 0.32s;
+  transition-timing-function: cubic-bezier(0, 0.53, 0.26, 1.06);
+}
+
+.rateIcon {
+  width: 12px;
+}
+.rate {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #e6e6e6;
+}
+.buttonsContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  top: 0;
+  right: 0;
+  margin: 14px 14px 0 0;
+}
+.addRemoveBtn,
+.editBtn {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 10.8px;
+  padding: 9.6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 400ms;
+  overflow: hidden;
+}
+
+.addRemoveBtn {
+  background-color: #292929;
+}
+.addRemoveBtn:hover {
+  background-color: #db5656;
+}
+.removeIcon,
+.addIcon {
+  transition: 400ms;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+
+.removeIcon {
+  left: -25%;
+}
+
+.addRemoveBtn:hover .removeIcon {
+  left: 50%;
+}
+.addRemoveBtn:hover .addIcon {
+  left: 150%;
+}
+
+.editBtn {
+  background-color: #292929;
+}
+.editBtn:hover {
+  background-color: #2e2e2e;
+}
+.editIcon {
+  transition: 240ms;
+}
+
+.editBtn:hover .editIcon {
+  transform: rotateZ(180deg);
+}
+
+.infoContainer {
+  padding: 0 14px;
+  position: absolute;
+  bottom: -90px;
+  z-index: 1;
+}
+.title {
+  padding-bottom: 4px;
+  font-size: 2rem;
+  transition: 0.2s;
+}
+
+.genresContainer {
+  height: 36px;
+  transition: 0.2s;
+  transition-delay: 0.02s;
+}
+.descriptionContainer {
+  height: 90px;
+  overflow-y: scroll;
+}
+
+.shadow {
+  height: 0%;
+  position: absolute;
+  bottom: -48px;
+  width: 100%;
+  box-shadow: 0 0 98px 96px rgba(0, 0, 0, 1);
+  z-index: 0;
+  transition: 0.8s;
+}
+
+.card:hover .ratingBox {
+  left: 0;
+  transition-delay: 0.4s;
+}
+.card:hover .poster {
+  transition-delay: 0.04s;
+  filter: blur(28px);
+  scale: 1.04;
+}
+.card:hover .shadow {
+  bottom: 0;
+}
+.description {
+  font-size: 0.92rem;
+}
+
+.descriptionContainer::-webkit-scrollbar {
+  width: 0;
+}
+.card:hover .title {
+  transform: translateY(-120px);
+}
+.card:hover .genresContainer {
+  transform: translateY(-120px);
+}
+.card:hover .descriptionContainer {
+  transform: translateY(-118px);
+  transition: 0.4s;
+  transition-delay: 0.24s;
+  transition-timing-function: cubic-bezier(0, 0.53, 0.26, 1.06);
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Movie } from '../../../Types/Movie'
-import styles from './style.module.css'
+import styles from './popularcard.module.css'
 type Props = { movie: Movie; movieHovered: Function; movieLeaved: Function }
 
 export default function PopularCard({ movie, movieHovered, movieLeaved }: Props) {
@@ -32,7 +32,6 @@ export default function PopularCard({ movie, movieHovered, movieLeaved }: Props)
       >
         <span className={styles.addMovieSpan}>Click To Add</span>
         <img src={movie.poster} className={styles.moviePoster} alt="Movie Poster" />
-        <span className={styles.movieTitle}>{movie.title}</span>
       </div>
     </>
   )

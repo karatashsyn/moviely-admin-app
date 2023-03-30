@@ -3,7 +3,7 @@ import './components/NavBar/Navbar'
 import Home from './pages/Home/Home'
 
 function App() {
-  return <Home popularMovies={[]} ownedMovies={[]} />
+  return <Home />
 }
 
 export default App

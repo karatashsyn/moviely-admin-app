@@ -10,7 +10,8 @@
 }
 
 .faded.gallery > * {
-  opacity: 0.32;
+  opacity: 0.48;
+  filter: blur(2px);
 }
 
 @media screen and (max-width: 769px) {

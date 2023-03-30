@@ -8,6 +8,8 @@
 }
 
 .navbar {
+  position: sticky;
+  top: -78px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -62,6 +64,9 @@
 }
 
 .logOutContainer {
+  position: fixed;
+  bottom: 24px;
+  width: 280px;
   margin-top: 64px;
   margin-top: auto;
   border-top: 1px solid #323232;
