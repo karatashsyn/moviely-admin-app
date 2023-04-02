@@ -8,7 +8,7 @@ import useGetPopulars from '../../Hooks/useGetPopulars'
 
 export default function Gallery() {
   const [galleryFade, setGalleryFade] = useState(false)
-  // const popularMovies =  popularMovies={[
+  // const popularMovies = [
   //   {
   //     id: 1,
   //     apiId: null,
@@ -58,8 +58,7 @@ export default function Gallery() {
   //     description: 'Good Movie',
   //     genres: [''],
   //     owned: false,
-  //     poster:
-  //       'https://i.pinimg.com/originals/04/f2/9b/04f29b61e4295fc9a285620df36e9626.jpg',
+  //     poster: 'https://i.pinimg.com/originals/04/f2/9b/04f29b61e4295fc9a285620df36e9626.jpg',
   //     rating: 2,
   //     title: 'Moonlight',
   //   },
@@ -91,8 +90,7 @@ export default function Gallery() {
   //     description: 'Good Movie',
   //     genres: [''],
   //     owned: false,
-  //     poster:
-  //       'https://mymodernmet.com/wp/wp-content/uploads/2018/01/honest-movie-posters-7.jpg',
+  //     poster: 'https://mymodernmet.com/wp/wp-content/uploads/2018/01/honest-movie-posters-7.jpg',
   //     rating: 2,
   //     title: 'Moonlight',
   //   },

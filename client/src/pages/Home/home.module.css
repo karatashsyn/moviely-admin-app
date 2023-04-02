@@ -17,7 +17,6 @@ body {
   gap: 72px;
 }
 .popularsContainer {
-  max-width: 100%;
   overflow-x: scroll;
 }
 .popularHeading,

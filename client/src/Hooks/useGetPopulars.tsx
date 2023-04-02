@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { TMDBMovieRepository } from '../Repository/Movie/tmdbMovieRepository'
 import { Movie } from '../Types/Movie'
-// import { JsonProductRepository } from "../Repository/Concrete/Local/JsonProductRepository"
 
 export default function useSearchProducts() {
   const movieService = new TMDBMovieRepository()

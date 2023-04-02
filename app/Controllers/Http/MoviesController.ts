@@ -57,7 +57,9 @@ export default class MoviesController {
         movie: movie,
       })
     } catch (error) {
-      return error
+      //
+      //
+      return error.messages[Object.keys(error.messages)[0]][0].message ?? error
     }
   }
 

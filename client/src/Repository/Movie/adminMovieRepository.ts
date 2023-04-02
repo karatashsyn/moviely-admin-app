@@ -8,4 +8,11 @@ export class adminMovieRepository {
     const movies = await res.json()
     return movies
   }
+
+  async store(movie: Movie) {
+    const url = 'http://127.0.0.3:3333/movies'
+    const req = await axios.post(url, movie)
+    const result = await req.data
+    return result
+  }
 }

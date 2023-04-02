@@ -5,7 +5,7 @@ type props = { movie: Movie }
 export default function MovieCard({ movie }: props) {
   return (
     <div className={styles.card}>
-      <img className={styles.poster} src={movie.poster ?? 'assets/NoImageImage.png'} alt="" />
+      <img className={styles.poster} src={movie.poster ?? 'assets/NoImageImage2.png'} alt="" />
       <div className={styles.ratingBox}>
         <div className={styles.iconContainer}>
           <svg
@@ -82,7 +82,7 @@ export default function MovieCard({ movie }: props) {
         </div>
       </div>
       <div className={styles.infoContainer}>
-        <h1 className={styles.title}>Joker</h1>
+        <h1 className={styles.title}>{movie.title}</h1>
         <div className={styles.genresContainer}>
           <span className={styles.genre}>Action,</span>
           <span className={styles.genre}>Drama</span>

@@ -1,10 +1,9 @@
 .gallery {
-  max-width: 100%;
   display: grid;
-  aspect-ratio: 28/10;
+  aspect-ratio: 28/12;
   grid-template-columns: repeat(28, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  min-width: 780px;
+  grid-template-rows: repeat(12, 1fr);
+  min-width: 720px;
   gap: 10px;
   transition: opacity 0.2s;
 }
@@ -15,4 +14,6 @@
 }
 
 @media screen and (max-width: 769px) {
+  .gallery {
+  }
 }

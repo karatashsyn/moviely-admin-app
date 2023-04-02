@@ -14,10 +14,11 @@ export class TmdbMovieService {
     )}&query=${title}`
   }
 
-  private popularMoviesUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${Env.get(
-    'TMDB_API_KEY'
-  )}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`
-
+  private popularMoviesUrl(page: number) {
+    return `https://api.themoviedb.org/3/discover/movie?api_key=${Env.get(
+      'TMDB_API_KEY'
+    )}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`
+  }
   private async fetchMovies(URL) {
     const res = await axios.get(URL)
     const movies: Array<TmdbMovie> = await res.data.results
@@ -52,7 +53,13 @@ export class TmdbMovieService {
   }
 
   public async getPopularMovies(): Promise<Array<AppMovie>> {
-    const popularMovies = await this.fetchMovies(this.popularMoviesUrl)
+    let popularMovies: Array<AppMovie> = []
+    let page = 1
+    while (popularMovies.length < 12) {
+      const freshMovies: Array<AppMovie> = await this.fetchMovies(this.popularMoviesUrl(page))
+      popularMovies = popularMovies.concat(freshMovies)
+      page++
+    }
     return popularMovies
   }
 }

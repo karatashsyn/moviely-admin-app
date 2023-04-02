@@ -1,4 +1,5 @@
 .galleryMember {
+  width: 100%;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -48,109 +49,77 @@
   transition: all 0.1s;
 }
 
-.galleryMember:nth-child(1):hover,
-.galleryMember:nth-child(3):hover,
-.galleryMember:nth-child(5):hover,
-.galleryMember:nth-child(7):hover,
-.galleryMember:nth-child(9):hover,
-.galleryMember:nth-child(11):hover {
-  /* transform: translateY(8px); */
-}
-
-.galleryMember:nth-child(2):hover,
-.galleryMember:nth-child(4):hover,
-.galleryMember:nth-child(6):hover,
-.galleryMember:nth-child(8):hover,
-.galleryMember:nth-child(10):hover,
-.galleryMember:nth-child(12):hover {
-  /* transform: translateY(-8px); */
-}
-
 .galleryMember:nth-child(1) {
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 1;
   grid-row-end: 6;
-  background-color: aliceblue;
 }
 .galleryMember:nth-child(2) {
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 6;
   grid-row-end: 12;
-  background-color: rgb(54, 104, 147);
 }
 .galleryMember:nth-child(3) {
   grid-column-start: 6;
   grid-column-end: 10;
   grid-row-start: 1;
   grid-row-end: 5;
-  background-color: rgb(219, 6, 6);
 }
 .galleryMember:nth-child(4) {
   grid-column-start: 6;
   grid-column-end: 10;
   grid-row-start: 5;
   grid-row-end: 12;
-  background-color: rgb(25, 167, 70);
 }
 .galleryMember:nth-child(5) {
   grid-column-start: 10;
   grid-column-end: 15;
   grid-row-start: 1;
   grid-row-end: 6;
-  background-color: aliceblue;
 }
 .galleryMember:nth-child(6) {
   grid-column-start: 10;
   grid-column-end: 15;
   grid-row-start: 6;
   grid-row-end: 12;
-  background-color: rgb(186, 125, 20);
 }
 .galleryMember:nth-child(7) {
   grid-column-start: 15;
   grid-column-end: 19;
   grid-row-start: 1;
   grid-row-end: 7;
-  background-color: rgb(219, 6, 6);
-  background-color: aliceblue;
 }
 .galleryMember:nth-child(8) {
   grid-column-start: 15;
   grid-column-end: 19;
   grid-row-start: 7;
   grid-row-end: 12;
-  background-color: rgb(124, 106, 106);
 }
 .galleryMember:nth-child(9) {
   grid-column-start: 19;
   grid-column-end: 23;
   grid-row-start: 1;
   grid-row-end: 5;
-  background-color: aliceblue;
-  background-color: aliceblue;
 }
 .galleryMember:nth-child(10) {
   grid-column-start: 19;
   grid-column-end: 23;
   grid-row-start: 5;
   grid-row-end: 12;
-  background-color: rgb(16, 68, 114);
 }
 .galleryMember:nth-child(11) {
   grid-column-start: 23;
   grid-column-end: 29;
   grid-row-start: 1;
   grid-row-end: 4;
-  background-color: rgb(185, 60, 170);
 }
 .galleryMember:nth-child(12) {
   grid-column-start: 23;
   grid-column-end: 29;
   grid-row-start: 4;
   grid-row-end: 12;
-  background-color: aliceblue;
 }
 
 @keyframes jumpingText {
