@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { TMDBMovieRepository } from '../Repository/Movie/tmdbMovieRepository'
 import { Movie } from '../Types/Movie'
+import { adminMovieRepository } from '../Repository/Movie/adminMovieRepository'
 
 export default function useSearchProducts() {
-  const movieService = new TMDBMovieRepository()
+  const movieService = new adminMovieRepository()
   const emptyProductArray: Array<Movie> = []
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)

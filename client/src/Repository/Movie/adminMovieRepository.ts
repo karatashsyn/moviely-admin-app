@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Movie } from '../../Types/Movie'
+import { log } from 'console'
 
 export class adminMovieRepository {
   async index(title: string): Promise<Array<Movie>> {
@@ -12,7 +13,27 @@ export class adminMovieRepository {
   async store(movie: Movie) {
     const url = 'http://127.0.0.3:3333/movies'
     const req = await axios.post(url, movie)
-    const result = await req.data
+    const result = req
+
     return result
+  }
+
+  async delete(movie: Movie) {
+    const url = 'http://127.0.0.3:3333/movies/'
+    const req = await axios.delete(url + movie.id)
+    const result = req
+
+    return result
+  }
+
+  async getPopulars(): Promise<Array<Movie>> {
+    const url = 'http://127.0.0.3:3333/movies/service/populars'
+    const res = await fetch(url)
+    const data: Array<Movie> = await res.json()
+    const popularMovies = data.map((m) => {
+      return { ...m, poster: `https://image.tmdb.org/t/p/original/${m.poster}` }
+    })
+
+    return popularMovies.slice(0, 12)
   }
 }

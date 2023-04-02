@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Movie } from '../../Types/Movie'
 import styles from './moviecard.module.css'
+import { adminMovieRepository } from '../../Repository/Movie/adminMovieRepository'
 type props = { movie: Movie }
 export default function MovieCard({ movie }: props) {
+  const [deleted, setDeleted] = useState(false)
+
+  const movieService = new adminMovieRepository()
+  const handleDelete = async () => {
+    const result = await movieService.delete(movie)
+    if (result.status === 204) {
+      setDeleted(true)
+    }
+  }
+
   return (
-    <div className={styles.card}>
+    <div className={deleted ? `${styles.card} ${styles.deleted}` : styles.card}>
+      <span className={styles.deletedSpan}>DELETED</span>
       <img className={styles.poster} src={movie.poster ?? 'assets/NoImageImage2.png'} alt="" />
       <div className={styles.ratingBox}>
         <div className={styles.iconContainer}>
@@ -24,7 +36,7 @@ export default function MovieCard({ movie }: props) {
         <div className={styles.rate}>{movie.rating ?? '--'}</div>
       </div>
       <div className={styles.buttonsContainer}>
-        <div className={styles.addRemoveBtn}>
+        <div className={styles.addRemoveBtn} onClick={handleDelete}>
           <svg
             className={styles.addIcon}
             width="65"
