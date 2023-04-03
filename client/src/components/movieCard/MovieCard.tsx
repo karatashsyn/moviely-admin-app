@@ -6,7 +6,6 @@ type props = { movie: Movie }
 export default function MovieCard({ movie }: props) {
   const [deleted, setDeleted] = useState(false)
   const [added, setAdded] = useState(movie.owned)
-  //Why I cannot see the correct result when I do [added, setAdded] = useState(movie.owned)
   const movieService = new adminMovieRepository()
   const handleDelete = async () => {
     const result = await movieService.delete(movie)
@@ -16,14 +15,22 @@ export default function MovieCard({ movie }: props) {
   }
 
   useEffect(() => {
+    setDeleted(false)
+  }, [movie])
+
+  useEffect(() => {
     setAdded(movie.owned)
   }, [movie])
 
-  const handleAdd = async () => {}
+  const handleAdd = async () => {
+    const res = await movieService.store({ ...movie, genres: [] })
+    if (res.status === 200) {
+      setAdded(true)
+    }
+  }
 
   return (
     <div className={deleted ? `${styles.card} ${styles.deleted}` : styles.card}>
-      {/* <h1>{movie.owne ? 'owned' : 'notowned'}</h1> */}
       <span className={styles.deletedSpan}>DELETED</span>
       <img className={styles.poster} src={movie.poster ?? 'assets/NoImageImage2.png'} alt="" />
       <div className={styles.ratingBox}>
@@ -48,7 +55,7 @@ export default function MovieCard({ movie }: props) {
           <>
             <div className={styles.removeBtn} onClick={handleDelete}>
               <svg
-                className={styles.addIcon}
+                className={styles.addedIcon}
                 width="65"
                 height="56"
                 viewBox="0 0 65 56"
@@ -105,7 +112,7 @@ export default function MovieCard({ movie }: props) {
           </>
         ) : (
           <>
-            <div className={styles.addBtn}>
+            <div className={styles.addBtn} onClick={handleAdd}>
               <svg
                 width="40"
                 height="41"

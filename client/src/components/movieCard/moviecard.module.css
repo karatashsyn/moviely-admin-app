@@ -113,10 +113,14 @@
 }
 
 .addBtn {
-  background-color: #000000;
+  background-color: #1b1b1b;
+}
+
+.addBtn:hover {
+  background-color: #3c3c3c;
 }
 .removeIcon,
-.addIcon {
+.addedIcon {
   transition: 400ms;
   position: absolute;
   left: 50%;
@@ -132,7 +136,7 @@
 .removeBtn:hover .removeIcon {
   left: 50%;
 }
-.removeBtn:hover .addIcon {
+.removeBtn:hover .addedIcon {
   left: 150%;
 }
 

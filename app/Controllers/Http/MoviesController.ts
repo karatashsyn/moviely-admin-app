@@ -20,7 +20,7 @@ export default class MoviesController {
   public async index({ request, response }: HttpContextContract) {
     try {
       const title = request.input('title')
-      const limit = request.input('limit', 20)
+      const limit = request.input('limit', 21)
       const genres = request.input('genres')
 
       const dbMovies = await Movie.query()
@@ -51,15 +51,15 @@ export default class MoviesController {
       await movie.fill(payload).save()
       if (payload.genres) movie?.related('genres').sync(payload.genres)
       if (payload.artists) movie?.related('artists').sync(payload.artists)
-      response.send({
+      response.status(200).send({
         status: 'success',
         message: 'Movie has been created successfully',
         movie: movie,
       })
     } catch (error) {
-      //
-      //
-      return error.messages[Object.keys(error.messages)[0]][0].message ?? error
+      response
+        .status(500)
+        .json({ error: error.messages[Object.keys(error.messages)[0]][0].message ?? error })
     }
   }
 
