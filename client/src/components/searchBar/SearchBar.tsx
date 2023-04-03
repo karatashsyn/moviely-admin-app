@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import styles from './searchbar.module.css'
 
-export default function SearchBar() {
+type Props = { setSearchKey: Function }
+
+export default function SearchBar({ setSearchKey }: Props) {
+  const [tempSearchKey, setTempSearchKey] = useState('')
+
+  const handleKeyPress = (e: any) => {
+    setTempSearchKey(e.target.value)
+  }
+
   return (
-    <div className={styles.searchBar}>
+    <form
+      className={styles.searchBar}
+      onSubmit={(e) => {
+        e.preventDefault()
+        setSearchKey(tempSearchKey)
+      }}
+    >
       <div className={styles.threeDotsContainer}>
         <svg
           width="73"
@@ -42,11 +56,12 @@ export default function SearchBar() {
         </svg>
       </div>
       <input
+        onChange={handleKeyPress}
         className={styles.searchInput}
         type="text"
         name="title"
         placeholder="Search For Movies..."
       />
-    </div>
+    </form>
   )
 }

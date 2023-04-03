@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
 import { adminMovieRepository } from '../Repository/Movie/adminMovieRepository'
 import { Movie } from '../Types/Movie'
-// import { JsonProductRepository } from "../Repository/Concrete/Local/JsonProductRepository"
 
-export default function useSearchProducts(title: string) {
+export default function useGetMovies(title: string) {
   const movieService = new adminMovieRepository()
-  const emptyProductArray: Array<Movie> = []
+  const emptyMovieArray: Array<Movie> = []
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
-  const [movies, setMovies] = useState(emptyProductArray)
+  const [movies, setMovies] = useState(emptyMovieArray)
 
   useEffect(() => {
     try {
@@ -21,7 +20,7 @@ export default function useSearchProducts(title: string) {
       setError(true)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [title])
 
   return { movies, loading, error }
 }

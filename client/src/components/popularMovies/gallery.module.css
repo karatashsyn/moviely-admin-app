@@ -6,6 +6,7 @@
   min-width: 720px;
   gap: 10px;
   transition: opacity 0.2s;
+  margin-top: 24px;
 }
 
 .faded.gallery > * {

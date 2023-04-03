@@ -66,7 +66,7 @@ export default class MoviesController {
   public async update({ request, response }: HttpContextContract) {
     try {
       const payload = await request.validate(UpdateMovieValidator)
-      const movie = await Movie.find(request.param('id'))
+      const movie = await Movie.findOrFail(request.param('id'))
       await movie?.merge(payload).save()
       if (payload.genres) movie?.related('genres').sync(payload.genres)
       if (payload.artists) movie?.related('artists').sync(payload.artists)
@@ -78,7 +78,7 @@ export default class MoviesController {
 
   public async destroy({ request, response }: HttpContextContract) {
     try {
-      const movie = await Movie.find(request.param('id'))
+      const movie = await Movie.findOrFail(request.param('id'))
       await movie?.delete()
       response.status(204).json({})
     } catch (error) {

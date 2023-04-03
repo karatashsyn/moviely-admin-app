@@ -21,18 +21,18 @@ export class TmdbMovieService {
   }
   private async fetchMovies(URL) {
     const res = await axios.get(URL)
-    const movies: Array<TmdbMovie> = await res.data.results
+    const tmdbMovies: Array<TmdbMovie> = await res.data.results
     const result: Array<AppMovie> = []
     await Promise.all(
-      movies.map(async (m) => {
+      tmdbMovies.map(async (m) => {
         const movie = await Movie.findBy('api_id', m.id)
         if (!movie) {
           result.push({
             id: null,
             apiId: m.id,
             title: m.title,
-            poster: m.poster_path,
-            rating: m.vote_average,
+            poster: m.poster_path ? `https://image.tmdb.org/t/p/original/${m.poster_path}` : null,
+            rating: m.vote_average ? +m.vote_average.toFixed(1) : null,
             description: m.overview,
             owned: false,
             genres: m.genre_ids,
@@ -49,6 +49,11 @@ export class TmdbMovieService {
       return []
     }
     const movies = await this.fetchMovies(this.searchMovieUrl(query))
+    movies.sort((a, b) => {
+      const rateA = a.rating ?? 0
+      const rateB = b.rating ?? 0
+      return rateB - rateA
+    })
     return movies
   }
 
@@ -56,7 +61,7 @@ export class TmdbMovieService {
     let popularMovies: Array<AppMovie> = []
     let page = 1
     while (popularMovies.length < 12) {
-      const freshMovies: Array<AppMovie> = await this.fetchMovies(this.popularMoviesUrl(page))
+      let freshMovies: Array<AppMovie> = await this.fetchMovies(this.popularMoviesUrl(page))
       popularMovies = popularMovies.concat(freshMovies)
       page++
     }

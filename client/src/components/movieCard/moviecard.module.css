@@ -89,8 +89,9 @@
   right: 0;
   margin: 14px 14px 0 0;
 }
-.addRemoveBtn,
-.editBtn {
+.removeBtn,
+.editBtn,
+.addBtn {
   position: relative;
   width: 42px;
   height: 42px;
@@ -104,11 +105,15 @@
   overflow: hidden;
 }
 
-.addRemoveBtn {
+.removeBtn {
   background-color: #292929;
 }
-.addRemoveBtn:hover {
+.removeBtn:hover {
   background-color: #db5656;
+}
+
+.addBtn {
+  background-color: #000000;
 }
 .removeIcon,
 .addIcon {
@@ -124,10 +129,10 @@
   left: -25%;
 }
 
-.addRemoveBtn:hover .removeIcon {
+.removeBtn:hover .removeIcon {
   left: 50%;
 }
-.addRemoveBtn:hover .addIcon {
+.removeBtn:hover .addIcon {
   left: 150%;
 }
 

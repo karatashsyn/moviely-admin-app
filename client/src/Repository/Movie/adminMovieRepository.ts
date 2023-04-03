@@ -6,7 +6,9 @@ export class adminMovieRepository {
   async index(title: string): Promise<Array<Movie>> {
     const url = `http://127.0.0.3:3333/movies?title=${title}`
     const res = await fetch(url)
-    const movies = await res.json()
+    let movies = await res.json()
+    console.log(movies)
+
     return movies
   }
 
@@ -21,8 +23,9 @@ export class adminMovieRepository {
   async delete(movie: Movie) {
     const url = 'http://127.0.0.3:3333/movies/'
     const req = await axios.delete(url + movie.id)
-    const result = req
+    console.log(req)
 
+    const result = req
     return result
   }
 

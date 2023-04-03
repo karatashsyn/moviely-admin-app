@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MovieCard from '../../components/MovieCard/MovieCard'
 import Navbar from '../../components/NavBar/Navbar'
 import Gallery from '../../components/PopularMovies/Gallery'
 import SearchBar from '../../components/SearchBar/SearchBar'
-import useGetOwnedMovies from '../../Hooks/useGetOwnedMovies'
+import useGetMovies from '../../Hooks/useGetMovies'
 import styles from './home.module.css'
 
 const admin = { name: 'Mehmet', surname: 'Karsu', email: 'mehmetkarsu@gmail.com' }
 export default function Home() {
-  const { movies } = useGetOwnedMovies('')
+  const [searchKey, setSearchKey] = useState('')
+  const { movies, loading } = useGetMovies(searchKey)
+
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.navSection}>
@@ -16,13 +18,15 @@ export default function Home() {
       </div>
       <div className={styles.moviesSection}>
         <div className={styles.searchbarContainer}>
-          <SearchBar />
+          <SearchBar setSearchKey={setSearchKey} />
         </div>
-        <h1 className={styles.popularHeading}>Recently Popular</h1>
-        <div className={styles.popularsContainer}>
-          <Gallery />
-        </div>
-        <h1 className={styles.myMoviesHeading}>My Movies</h1>
+        {!searchKey && <h1 className={styles.popularHeading}>Recently Popular</h1>}
+        {!searchKey && (
+          <div className={styles.popularsContainer}>
+            <Gallery />
+          </div>
+        )}
+        {!searchKey && <h1 className={styles.myMoviesHeading}>My Movies</h1>}
         <div className={styles.myMoviesContainer}>
           {movies.map((m) => {
             return <MovieCard movie={m} />

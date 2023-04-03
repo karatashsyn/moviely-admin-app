@@ -4,7 +4,7 @@ export type TmdbMovie = {
   original_title: string
   title: string
   video: boolean
-  vote_average: number
+  vote_average: number | null
   vote_count: number
   overview: string
   poster_path: string
