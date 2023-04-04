@@ -15,6 +15,7 @@ export default function useGetMovies(title: string) {
       setError(false)
       movieService.index(title).then((res: any) => {
         setMovies(res)
+        setLoading(false)
       })
     } catch (error) {
       setError(true)
