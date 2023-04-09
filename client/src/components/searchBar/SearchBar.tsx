@@ -20,38 +20,28 @@ export default function SearchBar({ setSearchKey }: Props) {
     >
       <div className={styles.threeDotsContainer}>
         <svg
-          width="73"
-          height="74"
-          viewBox="0 0 73 74"
+          width="74"
+          height="64"
+          viewBox="0 0 74 64"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <ellipse
+          <circle opacity="0.2" cx="36.6953" cy="18.1923" r="18" fill="#E43434" />
+          <circle
             opacity="0.2"
-            cx="34.1886"
-            cy="50.9856"
-            rx="16.3085"
-            ry="15.9249"
-            transform="rotate(-31.6967 34.1886 50.9856)"
+            cx="48.8198"
+            cy="39"
+            r="18"
+            transform="rotate(120 48.8198 39)"
+            fill="#9E9A9A"
+          />
+          <circle
+            opacity="0.2"
+            cx="24.5885"
+            cy="38.9897"
+            r="18"
+            transform="rotate(-120 24.5885 38.9897)"
             fill="#CC8282"
-          />
-          <ellipse
-            opacity="0.2"
-            cx="22.2433"
-            cy="32.4514"
-            rx="16.3085"
-            ry="15.9249"
-            transform="rotate(-31.6967 22.2433 32.4514)"
-            fill="#E43434"
-          />
-          <ellipse
-            opacity="0.2"
-            cx="44.9015"
-            cy="31.7141"
-            rx="16.3085"
-            ry="15.9249"
-            transform="rotate(-31.6967 44.9015 31.7141)"
-            fill="#C6AAAA"
           />
         </svg>
       </div>

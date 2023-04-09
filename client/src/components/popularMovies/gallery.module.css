@@ -10,11 +10,11 @@
 }
 
 .faded.gallery > * {
-  opacity: 0.36;
-  /* filter: blur(2px); */
+  opacity: 0.48;
+  filter: blur(2.6px);
 }
 
-@media screen and (max-width: 769px) {
+/* @media screen and (max-width: 769px) {
   .gallery {
   }
-}
+} */

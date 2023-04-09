@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { Movie } from '../../../Types/Movie'
 import styles from './popularcard.module.css'
 import { adminMovieRepository } from '../../../Repository/Movie/adminMovieRepository'
+import { log } from 'console'
 type Props = { movie: Movie; movieHovered: Function; movieLeaved: Function }
 
 export default function PopularCard({ movie, movieHovered, movieLeaved }: Props) {

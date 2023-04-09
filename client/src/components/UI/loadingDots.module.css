@@ -1,16 +1,17 @@
 .dotsContainer {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 72px 0;
 }
 
 .dots {
   /* animation: spinning 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0 infinite; */
   animation-name: spinning;
-  animation-duration: 1s;
+  animation-duration: 2.4s;
   animation-iteration-count: infinite;
-  padding-bottom: 2.4px;
 }
 @keyframes spinning {
   0% {
@@ -18,6 +19,6 @@
   }
 
   100% {
-    transform: rotateZ(360deg);
+    transform: rotateZ(1080deg);
   }
 }
