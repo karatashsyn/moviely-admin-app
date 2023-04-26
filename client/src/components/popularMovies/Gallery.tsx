@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import styles from './gallery.module.css'
 import { Movie } from '../../Types/Movie'
-import PopularCard from './PopularCard/PopularCard'
+import PopularCard from './PopularCard'
 import useGetPopulars from '../../Hooks/useGetPopulars'
 import LoadingBox from '../UI/LoadingBox'
 //12 Popular Movie

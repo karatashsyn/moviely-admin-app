@@ -37,6 +37,7 @@ body {
   background-color: #0d0c0f;
   /* background-color: rgb(3, 138, 255); */
   border-radius: 16px;
+  z-index: 6;
 }
 
 .moviesSection {
@@ -50,4 +51,34 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 64px;
   margin-top: 24px;
+}
+@media screen and (max-width: 1226px) {
+  .myMoviesContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 986px) {
+  .myMoviesContainer {
+    /* grid-template-columns: repeat(1, 1fr); */
+  }
+  .popularsContainer div {
+    overflow: visible;
+  }
+  .popularsContainer span {
+    width: min-content;
+    font-size: 12px;
+    bottom: -12%;
+    z-index: 3;
+  }
+  .pageWrapper {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .navSection {
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .myMoviesContainer > * {
+  }
 }

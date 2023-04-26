@@ -20,7 +20,7 @@ export default class MoviesController {
   public async index({ request, response }: HttpContextContract) {
     try {
       const title = request.input('title')
-      const limit = request.input('limit', 21)
+      const limit = request.input('limit', 36)
       const genres = request.input('genres')
 
       const dbMovies = await Movie.query()
@@ -32,6 +32,7 @@ export default class MoviesController {
             .select('movie_id')
             .whereIn('genre_id', genres)
         })
+        .orderBy('id', 'desc')
         .limit(limit)
       const ownedMovies = dbMovies.map((m) => {
         return { ...m.$attributes, owned: true }
