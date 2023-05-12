@@ -31,22 +31,13 @@ body {
   width: 0;
 }
 
-.navSection {
-  height: auto;
-  min-width: 280px;
-  background-color: #0d0c0f;
-  /* background-color: rgb(3, 138, 255); */
-  border-radius: 16px;
-  z-index: 6;
-}
-
 .moviesSection {
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: visible;
   flex-basis: 100%;
 }
 
 .myMoviesContainer {
+  overflow: visible;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 64px;
@@ -69,12 +60,6 @@ body {
     font-size: 12px;
     bottom: -12%;
     z-index: 3;
-  }
-  .pageWrapper {
-    flex-direction: column;
-    gap: 32px;
-  }
-  .navSection {
   }
 }
 
