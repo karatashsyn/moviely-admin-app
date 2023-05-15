@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Movie } from '../../Types/Movie'
+import { log } from 'console'
 
 export class adminMovieRepository {
   async index(title: string): Promise<Array<Movie>> {
@@ -25,6 +26,7 @@ export class adminMovieRepository {
     const req = await axios.delete(url + movie.id)
     const result = req
     console.log(result)
+    console.log(movie)
 
     return result
   }

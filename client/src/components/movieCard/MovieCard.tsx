@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Movie } from '../../Types/Movie'
 import styles from './moviecard.module.css'
-type props = { movie: Movie; deleteMovie: Function }
-export default function MovieCard({ movie, deleteMovie }: props) {
+type props = { movie: Movie; deleteMovie: Function; addMovie: Function }
+export default function MovieCard({ movie, deleteMovie, addMovie }: props) {
   const [deleted, setDeleted] = useState(false)
   const [added, setAdded] = useState(movie.owned)
+  const [id, setId] = useState(null)
 
   const handleDelete = async () => {
-    const result = await deleteMovie(movie)
+    const result = movie.id ? await deleteMovie(movie) : await deleteMovie({ ...movie, id: id })
     if (result.status === 204) {
       setDeleted(true)
     }
@@ -22,9 +23,10 @@ export default function MovieCard({ movie, deleteMovie }: props) {
   }, [movie])
 
   const handleAdd = async () => {
-    const res = await deleteMovie({ ...movie, genres: [] })
+    const res = await addMovie({ ...movie, genres: [] })
     if (res.status === 200) {
       setAdded(true)
+      setId(res.data.movie.id)
     }
   }
 
@@ -123,7 +125,7 @@ export default function MovieCard({ movie, deleteMovie }: props) {
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M16.2147 0.903809C15.8141 0.903809 15.4894 1.22854 15.4894 1.62911L15.4894 15.8242L1.29464 15.8242C0.894065 15.8242 0.569336 16.149 0.569336 16.5495V24.7862C0.569336 25.1867 0.894065 25.5115 1.29464 25.5115L15.4894 25.5115L15.4894 39.3449C15.4894 39.7455 15.8141 40.0702 16.2147 40.0702H24.4513C24.8519 40.0702 25.1766 39.7455 25.1766 39.3449V25.5115L39.0104 25.5115C39.411 25.5115 39.7357 25.1867 39.7357 24.7862V16.5495C39.7357 16.149 39.411 15.8242 39.0104 15.8242L25.1766 15.8242V1.62911C25.1766 1.22854 24.8519 0.903809 24.4513 0.903809H16.2147Z"
-                  fill="#C80000"
+                  fill="#ff0000"
                 />
               </svg>
             </div>

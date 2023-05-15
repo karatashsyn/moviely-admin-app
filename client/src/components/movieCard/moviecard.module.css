@@ -11,9 +11,11 @@
 
 .deleted {
   pointer-events: none;
+  opacity: 0.4;
 }
 .deleted .poster {
-  opacity: 0.2;
+  opacity: 0.12;
+  filter: blur(48px);
 }
 .deleted .infoContainer,
 .deleted .buttonsContainer {
