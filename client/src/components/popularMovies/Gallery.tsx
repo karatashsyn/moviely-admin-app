@@ -1,12 +1,11 @@
 import React, { useState, useMemo } from 'react'
 import styles from './gallery.module.css'
-import { Movie } from '../../Types/Movie'
 import PopularCard from './PopularCard'
 import useGetPopulars from '../../Hooks/useGetPopulars'
 import LoadingBox from '../UI/LoadingBox'
 //12 Popular Movie
 
-export default function Gallery() {
+export default function Gallery({ addMovie }: any) {
   const [galleryFade, setGalleryFade] = useState(false)
   const { movies, loading } = useGetPopulars()
   let loadingsArray = useMemo(() => {
@@ -25,7 +24,12 @@ export default function Gallery() {
       {loading
         ? loadingsArray.map((m) => <LoadingBox />)
         : movies.map((m) => (
-            <PopularCard movie={m} movieHovered={openFade} movieLeaved={closeFade} />
+            <PopularCard
+              addMovie={addMovie}
+              movie={m}
+              movieHovered={openFade}
+              movieLeaved={closeFade}
+            />
           ))}
     </div>
   )

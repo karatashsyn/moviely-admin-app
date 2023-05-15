@@ -70,7 +70,7 @@ export default function Navbar({ admin }: props) {
               <circle cx="32" cy="56" r="4" fill="#C80000" />
             </svg>
           </div>
-          <NavLink to={'/home'}>
+          <NavLink to={'/'}>
             <h2 className={styles.optionName}>Home</h2>
           </NavLink>
         </div>

@@ -1,0 +1,57 @@
+.snackBar {
+  background-color: rgb(242, 80, 80);
+  position: fixed;
+  top: 6%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  /* min-width: 300px; */
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 6px 72px;
+  padding-left: 32px;
+  box-shadow: 2px 2px 36px 2px black;
+
+  opacity: 0;
+}
+
+#shown {
+  animation-name: showUp;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.message {
+  font-weight: 600;
+}
+
+.successIcon {
+  color: green;
+}
+
+.failIcon {
+  color: rgba(79, 0, 0, 0.805);
+}
+.success {
+  background-color: #00f593;
+}
+
+.success .message {
+  color: rgb(0, 68, 0);
+}
+
+@keyframes showUp {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

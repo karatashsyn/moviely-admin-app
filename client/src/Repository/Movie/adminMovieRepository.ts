@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { Movie } from '../../Types/Movie'
-import { log } from 'console'
 
 export class adminMovieRepository {
   async index(title: string): Promise<Array<Movie>> {
@@ -16,6 +15,7 @@ export class adminMovieRepository {
     const url = 'http://127.0.0.3:3333/movies'
     const req = await axios.post(url, movie)
     const result = req
+    console.log(result)
 
     return result
   }
@@ -23,9 +23,9 @@ export class adminMovieRepository {
   async delete(movie: Movie) {
     const url = 'http://127.0.0.3:3333/movies/'
     const req = await axios.delete(url + movie.id)
-    console.log(req)
-
     const result = req
+    console.log(result)
+
     return result
   }
 
@@ -36,7 +36,6 @@ export class adminMovieRepository {
     const popularMovies = data.map((m) => {
       return { ...m, poster: `https://image.tmdb.org/t/p/original/${m.poster}` }
     })
-
     return popularMovies.slice(0, 12)
   }
 }

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Movie } from '../../Types/Movie'
 import styles from './moviecard.module.css'
-import { adminMovieRepository } from '../../Repository/Movie/adminMovieRepository'
-type props = { movie: Movie }
-export default function MovieCard({ movie }: props) {
+type props = { movie: Movie; deleteMovie: Function }
+export default function MovieCard({ movie, deleteMovie }: props) {
   const [deleted, setDeleted] = useState(false)
   const [added, setAdded] = useState(movie.owned)
-  const movieService = new adminMovieRepository()
+
   const handleDelete = async () => {
-    const result = await movieService.delete(movie)
+    const result = await deleteMovie(movie)
     if (result.status === 204) {
       setDeleted(true)
     }
@@ -23,7 +22,7 @@ export default function MovieCard({ movie }: props) {
   }, [movie])
 
   const handleAdd = async () => {
-    const res = await movieService.store({ ...movie, genres: [] })
+    const res = await deleteMovie({ ...movie, genres: [] })
     if (res.status === 200) {
       setAdded(true)
     }

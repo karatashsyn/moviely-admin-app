@@ -3,11 +3,10 @@ import { Movie } from '../../Types/Movie'
 import styles from './popularcard.module.css'
 import { adminMovieRepository } from '../../Repository/Movie/adminMovieRepository'
 import { log } from 'console'
-type Props = { movie: Movie; movieHovered: Function; movieLeaved: Function }
+type Props = { movie: Movie; movieHovered: Function; movieLeaved: Function; addMovie: Function }
 
-export default function PopularCard({ movie, movieHovered, movieLeaved }: Props) {
+export default function PopularCard({ movie, movieHovered, movieLeaved, addMovie }: Props) {
   const [attention, setAttention] = useState(false)
-  const movieService = new adminMovieRepository()
   const [error, setError] = useState({ error: false, message: '' })
   const [loading, setLoading] = useState(false)
   const [stored, setStored] = useState(false)
@@ -25,7 +24,7 @@ export default function PopularCard({ movie, movieHovered, movieLeaved }: Props)
   const handleStore = async () => {
     setLoading(true)
     setError({ error: false, message: '' })
-    const res = await movieService.store({ ...movie, genres: [] })
+    const res = await addMovie({ ...movie, genres: [] })
     setLoading(false)
     if (res.status === 200) {
       setStored(true)
