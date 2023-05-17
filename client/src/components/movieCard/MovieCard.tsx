@@ -6,6 +6,26 @@ export default function MovieCard({ movie, deleteMovie, addMovie }: props) {
   const [deleted, setDeleted] = useState(false)
   const [added, setAdded] = useState(movie.owned)
   const [id, setId] = useState(null)
+  const [genresString, setGenresString] = useState('')
+
+  useEffect(() => {
+    const genreNames = movie.genres.map((g: any) => g.name)
+    setGenresString(
+      genreNames
+        .map((g) => g)
+        .reduce((accumulator, genre, index) => {
+          if (index < 2) {
+            if (accumulator === '') {
+              return genre
+            } else {
+              return accumulator + ', ' + genre
+            }
+          } else {
+            return accumulator
+          }
+        }, '')
+    )
+  }, [movie])
 
   const handleDelete = async () => {
     const result = movie.id ? await deleteMovie(movie) : await deleteMovie({ ...movie, id: id })
@@ -135,8 +155,7 @@ export default function MovieCard({ movie, deleteMovie, addMovie }: props) {
       <div className={styles.infoContainer}>
         <h1 className={styles.title}>{movie.title}</h1>
         <div className={styles.genresContainer}>
-          <span className={styles.genre}>Action,</span>
-          <span className={styles.genre}>Drama</span>
+          <span className={styles.genre}>{genresString}</span>
         </div>
         <div className={styles.descriptionContainer}>
           <p className={styles.description}>{movie.description}</p>

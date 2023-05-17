@@ -4,6 +4,7 @@ import Movie from 'App/Models/Movie'
 import StoreMovieValidator from 'App/Validators/Movie/StoreMovieValidator'
 import UpdateMovieValidator from 'App/Validators/Movie/UpdateMovieValidator'
 import { TmdbMovieService } from 'App/TmdbServices/MovieService'
+import Genre from 'App/Models/Genre'
 
 export default class MoviesController {
   public movieService = new TmdbMovieService()
@@ -37,13 +38,17 @@ export default class MoviesController {
         .preload('genres')
 
       const ownedMovies = dbMovies.map((m) => {
-        console.log(m.genres)
         return { ...m.$attributes, ...m.$preloaded, owned: true }
       })
 
       const nonOwnedMovies = await this.movieService.searchMovies(title)
-
-      return [...ownedMovies, ...nonOwnedMovies]
+      const nonOwnedWithGenres = await Promise.all(
+        nonOwnedMovies.map(async (m) => {
+          const genresWithNames = await Genre.findMany(m.genres)
+          return { ...m, genres: genresWithNames }
+        })
+      )
+      return [...ownedMovies, ...nonOwnedWithGenres]
     } catch (error) {
       response.status(500).json({ Error: 'Ooops, something went wrong.' })
     }

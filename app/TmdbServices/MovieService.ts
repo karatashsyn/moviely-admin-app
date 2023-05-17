@@ -19,13 +19,15 @@ export class TmdbMovieService {
       'TMDB_API_KEY'
     )}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`
   }
-  private async fetchMovies(URL) {
+  private async fetchMovies(URL: string) {
     const res = await axios.get(URL)
     const tmdbMovies: Array<TmdbMovie> = await res.data.results
     const result: Array<AppMovie> = []
     await Promise.all(
       tmdbMovies.map(async (m) => {
+        //We want the movies that we don't have in our db
         const movie = await Movie.findBy('api_id', m.id)
+
         if (!movie) {
           result.push({
             id: null,
