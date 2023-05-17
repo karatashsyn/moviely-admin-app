@@ -24,7 +24,7 @@ export default function PopularCard({ movie, movieHovered, movieLeaved, addMovie
   const handleStore = async () => {
     setLoading(true)
     setError({ error: false, message: '' })
-    const res = await addMovie({ ...movie, genres: [] })
+    const res = await addMovie(movie)
     setLoading(false)
     if (res.status === 200) {
       setStored(true)

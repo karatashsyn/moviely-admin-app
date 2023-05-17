@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Movie } from '../Types/Movie'
 import { adminMovieRepository } from '../Repository/Movie/adminMovieRepository'
+import { log } from 'console'
 
 export default function useSearchProducts() {
   const movieService = new adminMovieRepository()
@@ -15,6 +16,8 @@ export default function useSearchProducts() {
       setError(false)
       movieService.getPopulars().then((res: any) => {
         setMovies(res)
+        console.log(res)
+
         setLoading(false)
       })
     } catch (error) {

@@ -17,14 +17,14 @@ export default function Gallery({ addMovie }: any) {
   const closeFade = () => {
     setGalleryFade(false)
   }
-  console.log(loadingsArray.length)
 
   return (
     <div className={galleryFade ? `${styles.gallery} ${styles.faded}` : `${styles.gallery} `}>
       {loading
         ? loadingsArray.map((m) => <LoadingBox />)
-        : movies.map((m) => (
+        : movies.map((m, index) => (
             <PopularCard
+              key={index}
               addMovie={addMovie}
               movie={m}
               movieHovered={openFade}

@@ -23,7 +23,7 @@ export default function MovieCard({ movie, deleteMovie, addMovie }: props) {
   }, [movie])
 
   const handleAdd = async () => {
-    const res = await addMovie({ ...movie, genres: [] })
+    const res = await addMovie(movie)
     if (res.status === 200) {
       setAdded(true)
       setId(res.data.movie.id)

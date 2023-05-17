@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { adminMovieRepository } from '../Repository/Movie/adminMovieRepository'
 import { Movie } from '../Types/Movie'
+import { log } from 'console'
 
 export default function useGetMovies(title: string) {
   const movieService = new adminMovieRepository()
@@ -17,6 +18,7 @@ export default function useGetMovies(title: string) {
         setMovies(res)
         setLoading(false)
       })
+      // console.log(movies)
     } catch (error) {
       setError(true)
     }

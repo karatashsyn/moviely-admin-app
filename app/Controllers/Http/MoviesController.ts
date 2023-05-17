@@ -34,11 +34,15 @@ export default class MoviesController {
         })
         .orderBy('id', 'desc')
         .limit(limit)
+        .preload('genres')
+
       const ownedMovies = dbMovies.map((m) => {
-        return { ...m.$attributes, owned: true }
+        console.log(m.genres)
+        return { ...m.$attributes, ...m.$preloaded, owned: true }
       })
 
       const nonOwnedMovies = await this.movieService.searchMovies(title)
+
       return [...ownedMovies, ...nonOwnedMovies]
     } catch (error) {
       response.status(500).json({ Error: 'Ooops, something went wrong.' })

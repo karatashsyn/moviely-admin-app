@@ -14,23 +14,31 @@ function App() {
   const movieRep = new adminMovieRepository()
 
   const addMovie = async (movie: Movie) => {
-    const result: any = await movieRep.store(movie)
-    if (result.status === 200) {
-      setResponse({ message: 'Added Successfully', success: true })
-    } else {
+    try {
+      const result: any = await movieRep.store(movie)
+      if (result.status === 200) {
+        setResponse({ message: 'Added successfully', success: true })
+      } else {
+        setResponse({ message: 'Something went wrong', success: false })
+      }
+      return result
+    } catch (error) {
       setResponse({ message: 'Something went wrong', success: false })
     }
-    return result
   }
 
   const deleteMovie = async (movie: Movie) => {
-    const result: any = await movieRep.delete(movie)
-    if (result.status === 204) {
-      setResponse({ message: 'Deleted successfully', success: true })
-    } else {
+    try {
+      const result: any = await movieRep.delete(movie)
+      if (result.status === 204) {
+        setResponse({ message: 'Deleted successfully', success: true })
+      } else {
+        setResponse({ message: 'Something went wrong', success: false })
+      }
+      return result
+    } catch (error) {
       setResponse({ message: 'Something went wrong', success: false })
     }
-    return result
   }
 
   useEffect(() => {

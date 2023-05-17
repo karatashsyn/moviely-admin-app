@@ -195,7 +195,7 @@
 .card:hover .poster {
   transition-delay: 0.04s;
   filter: blur(28px);
-  scale: 1.04;
+  scale: 1.06;
 }
 .card:hover .shadow {
   bottom: 0;
