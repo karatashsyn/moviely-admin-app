@@ -11,7 +11,7 @@ type Props = {
 
 export default function Input({ inputType, placeHolder, info, inputFunction, genres }: Props) {
   const [text, setText] = useState('')
-  const [selectedGenres, setSelectedGenres] = useState([{ id: 12, name: 'Science Fiction' }])
+  const [selectedGenres, setSelectedGenres] = useState<Array<Genre>>([])
 
   useEffect(() => {
     console.log(selectedGenres)
@@ -24,6 +24,8 @@ export default function Input({ inputType, placeHolder, info, inputFunction, gen
     } else if (inputType === 'multiSelection') {
       if (!selectedGenres.map((g: Genre) => g.id).includes(e.id)) {
         setSelectedGenres([...selectedGenres, e])
+      } else {
+        setSelectedGenres(selectedGenres.filter((g) => g.id !== e.id))
       }
     }
   }
@@ -40,21 +42,33 @@ export default function Input({ inputType, placeHolder, info, inputFunction, gen
 
         {/* Showing selected genres in the input box */}
         {inputType === 'multiSelection'
-          ? selectedGenres.map((g: Genre) => <div className={styles.genreBox}> {g.name}</div>)
-          : null}
-        {/* Selecting genre logic */}
-        {inputType === 'multiSelection' && genres ? (
-          <div className={styles.genresDropdown}>
-            {genres.map((g: Genre) => (
+          ? selectedGenres.map((g: Genre) => (
               <div
-                className={styles.genreOption}
+                className={styles.genreBox}
                 onClick={() => {
                   handleChange(g)
                 }}
               >
+                {' '}
                 {g.name}
               </div>
-            ))}
+            ))
+          : null}
+        {/* Selecting genre logic */}
+        {inputType === 'multiSelection' && genres ? (
+          <div className={styles.genresDropdown}>
+            {genres
+              .filter((g: Genre) => !selectedGenres.includes(g))
+              .map((g: Genre) => (
+                <div
+                  className={styles.genreOption}
+                  onClick={() => {
+                    handleChange(g)
+                  }}
+                >
+                  {g.name}
+                </div>
+              ))}
           </div>
         ) : null}
       </div>
