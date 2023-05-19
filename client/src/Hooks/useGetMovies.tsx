@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { adminMovieRepository } from '../Repository/Movie/adminMovieRepository'
 import { Movie } from '../Types/Movie'
-import { log } from 'console'
 
 export default function useGetMovies(title: string) {
   const movieService = new adminMovieRepository()
@@ -20,6 +19,7 @@ export default function useGetMovies(title: string) {
       })
       // console.log(movies)
     } catch (error) {
+      setLoading(false)
       setError(true)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
