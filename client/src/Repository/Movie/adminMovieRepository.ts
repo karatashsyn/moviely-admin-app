@@ -14,7 +14,7 @@ export class adminMovieRepository {
 
   async store(movie: Movie) {
     const url = 'http://127.0.0.3:3333/movies'
-    const req = await axios.post(url, movie)
+    const req = await axios.post(url, { ...movie, genres: movie.genres.map((g: any) => g.id) })
     const result = req
     console.log(result)
 

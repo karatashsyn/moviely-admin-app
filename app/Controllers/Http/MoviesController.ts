@@ -12,7 +12,13 @@ export default class MoviesController {
   public async fetchPopulars({ response }: HttpContextContract) {
     try {
       const movies = await this.movieService.getPopularMovies()
-      return movies
+      const moviesWithGenres = await Promise.all(
+        movies.map(async (m) => {
+          const genresWithNames = await Genre.findMany(m.genres)
+          return { ...m, genres: genresWithNames }
+        })
+      )
+      return moviesWithGenres
     } catch (error) {
       response.json({ error })
     }
@@ -67,6 +73,8 @@ export default class MoviesController {
         movie: movie,
       })
     } catch (error) {
+      console.log(error)
+
       response
         .status(500)
         .json({ error: error.messages[Object.keys(error.messages)[0]][0].message ?? error })

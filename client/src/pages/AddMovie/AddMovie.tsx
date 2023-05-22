@@ -11,7 +11,7 @@ export default function AddMovie() {
   const [selectedGenres, setSelectedGenres] = useState([])
 
   return (
-    <>
+    <div>
       <h1>Add Movie</h1>
       <div className={styles.container}>
         <div className={styles.titleContainer}>
@@ -27,6 +27,6 @@ export default function AddMovie() {
         <div className={styles.posterContainer}></div>
         <div className={styles.genresContainer}></div>
       </div>
-    </>
+    </div>
   )
 }
