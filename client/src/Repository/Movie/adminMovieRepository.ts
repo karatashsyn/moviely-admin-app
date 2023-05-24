@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { Movie } from '../../Types/Movie'
-import { log } from 'console'
 
 export class adminMovieRepository {
   async index(title: string): Promise<Array<Movie>> {

@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Genre } from '../Types/Genre'
+import { useEffect, useState } from 'react'
 import { adminGenreRepository } from '../Repository/Genre/adminGenreRepository'
 
 export default function useGetGenres() {
   const [genres, setGenres] = useState([])
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
-  const genreService = new adminGenreRepository()
 
   useEffect(() => {
+    const genreService = new adminGenreRepository()
     try {
       setLoading(true)
       genreService.index().then((res: any) => {

@@ -1,4 +1,4 @@
-import React, { Ref, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './components/NavBar/Navbar'
 import Home from './pages/Home/Home'
 import Navbar from './components/NavBar/Navbar'
@@ -48,20 +48,22 @@ function App() {
   }, [response])
 
   return (
-    <div className="pageWrapper">
+    <>
       {response ? (
         <SnackBar ref={snackBarRef} message={response.message} success={response.success} />
       ) : null}
-      <BrowserRouter>
-        <div className="navSection">
-          <Navbar admin={admin} />
-        </div>
-        <Routes>
-          <Route index element={<Home addMovie={addMovie} deleteMovie={deleteMovie} />}></Route>
-          <Route path="/add" element={<AddMovie />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+      <div className="pageWrapper">
+        <BrowserRouter>
+          <div className="navSection">
+            <Navbar admin={admin} />
+          </div>
+          <Routes>
+            <Route index element={<Home addMovie={addMovie} deleteMovie={deleteMovie} />}></Route>
+            <Route path="/add" element={<AddMovie />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </>
   )
 }
 
