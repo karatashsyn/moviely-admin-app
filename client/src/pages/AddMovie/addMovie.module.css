@@ -8,4 +8,6 @@
 
 .pageTitle {
   margin-bottom: 48px;
+  border-bottom: 1px solid #353535;
+  padding-bottom: 12px;
 }

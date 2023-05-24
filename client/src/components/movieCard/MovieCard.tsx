@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Movie } from '../../Types/Movie'
 import styles from './moviecard.module.css'
 type props = { movie: Movie; deleteMovie: Function; addMovie: Function }
@@ -7,6 +7,14 @@ export default function MovieCard({ movie, deleteMovie, addMovie }: props) {
   const [added, setAdded] = useState(movie.owned)
   const [id, setId] = useState(null)
   const [genresString, setGenresString] = useState('')
+  const [editMode, setEditMode] = useState(false)
+
+  const cardClassName = useMemo(() => {
+    let cardClass = styles.card
+    if (deleted) cardClass += ` ${styles.deleted}`
+    if (editMode) cardClass += ` ${styles.editMode}`
+    return cardClass
+  }, [deleted, editMode])
 
   useEffect(() => {
     const genreNames = movie.genres.map((g: any) => g.name)
@@ -26,6 +34,10 @@ export default function MovieCard({ movie, deleteMovie, addMovie }: props) {
         }, '')
     )
   }, [movie])
+
+  const handleEditMode = () => {
+    setEditMode(true)
+  }
 
   const handleDelete = async () => {
     const result = movie.id ? await deleteMovie(movie) : await deleteMovie({ ...movie, id: id })
@@ -51,7 +63,7 @@ export default function MovieCard({ movie, deleteMovie, addMovie }: props) {
   }
 
   return (
-    <div className={deleted ? `${styles.card} ${styles.deleted}` : styles.card}>
+    <div onClick={handleEditMode} className={cardClassName}>
       <span className={styles.deletedSpan}>DELETED</span>
       <img className={styles.poster} src={movie.poster ?? 'assets/NoImageImage2.png'} alt="" />
       <div className={styles.ratingBox}>

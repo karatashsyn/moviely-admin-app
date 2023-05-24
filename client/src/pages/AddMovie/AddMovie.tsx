@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './addMovie.module.css'
-import Input from '../../components/Input/Input'
+import Input from '../../Components/Input/Input'
 import useGetGenres from '../../Hooks/useGetGenres'
 export default function AddMovie() {
   const [title, setTitle] = useState('')

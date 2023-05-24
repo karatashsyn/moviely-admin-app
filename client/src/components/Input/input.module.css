@@ -50,6 +50,12 @@
   padding-left: 6px;
   width: 100%;
 }
+.inputContainer input::placeholder {
+  transition: 0.2s;
+}
+.inputContainer input:focus::placeholder {
+  opacity: 0.5;
+}
 
 .genresDropdown {
   display: flex;
@@ -67,7 +73,6 @@
   display: flex;
   align-items: center;
   background-color: #000000;
-  /* border: 1px solid rgb(255, 255, 255); */
   border-radius: 8px;
   min-height: 48px;
   padding: 8px;

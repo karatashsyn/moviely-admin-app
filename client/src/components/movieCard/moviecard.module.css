@@ -178,6 +178,10 @@
   overflow-y: scroll;
 }
 
+.editMode {
+  transform: translateX(50px);
+}
+
 .shadow {
   height: 0%;
   position: absolute;

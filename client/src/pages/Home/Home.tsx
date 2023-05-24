@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import MovieCard from '../../components/MovieCard/MovieCard'
-import Gallery from '../../components/PopularMovies/Gallery'
-import SearchBar from '../../components/SearchBar/SearchBar'
+import MovieCard from '../../Components/MovieCard/MovieCard'
+import Gallery from '../../Components/PopularMovies/Gallery'
+import SearchBar from '../../Components/SearchBar/SearchBar'
 import useGetMovies from '../../Hooks/useGetMovies'
 import styles from './home.module.css'
-import LoadingDots from '../../components/UI/LoadingDots'
+import LoadingDots from '../../Components/UI/LoadingDots'
 
 export default function Home({ addMovie, deleteMovie }: any) {
   const [searchKey, setSearchKey] = useState('')
