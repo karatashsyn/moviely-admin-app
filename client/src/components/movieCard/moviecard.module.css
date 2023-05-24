@@ -59,9 +59,8 @@
   object-fit: cover;
 }
 .ratingBox {
-  background-color: #323232;
+  background-color: #292929;
   position: absolute;
-  left: -78px;
   top: 0;
   padding: 1px 8px;
   display: flex;
@@ -78,9 +77,11 @@
   width: 12px;
 }
 .rate {
-  font-size: 0.8rem;
+  font-size: 0.92rem;
+  transition: 1s;
   font-weight: 500;
   color: #e6e6e6;
+  transform: translateY(-1px);
 }
 .buttonsContainer {
   position: absolute;
@@ -179,7 +180,7 @@
 }
 
 .editMode {
-  transform: translateX(50px);
+  /* transform: translateX(50px); */
 }
 
 .shadow {
@@ -192,10 +193,20 @@
   transition: 0.8s;
 }
 
-.card:hover .ratingBox {
-  left: 0;
-  transition-delay: 0.4s;
+.highRate {
+  color: rgb(179, 255, 193);
 }
+
+.averageRate {
+  color: rgb(255, 222, 139);
+}
+
+.lowRate {
+  color: rgb(255, 119, 119);
+}
+.card:hover .ratingBox .rate {
+}
+
 .card:hover .poster {
   transition-delay: 0.04s;
   filter: blur(28px);

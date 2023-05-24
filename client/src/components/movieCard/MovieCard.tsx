@@ -16,6 +16,14 @@ export default function MovieCard({ movie, deleteMovie, addMovie }: props) {
     return cardClass
   }, [deleted, editMode])
 
+  const rateClassName = () => {
+    let rateClass = styles.rate
+    if (movie.rating && movie.rating >= 7) rateClass += ` ${styles.highRate}`
+    if (movie.rating && movie.rating >= 4 && movie.rating < 7) rateClass += ` ${styles.averageRate}`
+    if (movie.rating && movie.rating < 4) rateClass += ` ${styles.lowRate}`
+    return rateClass
+  }
+
   useEffect(() => {
     const genreNames = movie.genres.map((g: any) => g.name)
     setGenresString(
@@ -81,7 +89,7 @@ export default function MovieCard({ movie, deleteMovie, addMovie }: props) {
             <rect x="22" y="15" width="6" height="15" rx="3" fill="#D9D9D9" />
           </svg>
         </div>
-        <div className={styles.rate}>{movie.rating ?? '--'}</div>
+        <div className={rateClassName()}>{movie.rating ?? '--'}</div>
       </div>
       <div className={styles.buttonsContainer}>
         {added ? (
