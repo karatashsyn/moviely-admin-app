@@ -29,7 +29,9 @@ export default function Home({ addMovie, deleteMovie }: any) {
           {!searchKey && <h1 className={styles.myMoviesHeading}>My Movies</h1>}
           <div className={styles.myMoviesContainer}>
             {movies.map((m) => {
-              return <MovieCard movie={m} deleteMovie={deleteMovie} addMovie={addMovie} />
+              return (
+                <MovieCard key={m.id} movie={m} deleteMovie={deleteMovie} addMovie={addMovie} />
+              )
             })}
           </div>
         </>

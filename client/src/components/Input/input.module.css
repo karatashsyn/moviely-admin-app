@@ -1,23 +1,32 @@
-.genreBox {
-  width: max-content;
-  height: 80%;
+.container {
   display: flex;
   align-items: center;
-  text-align: center;
-  padding: 8px;
+  background-color: #000000;
   border-radius: 4px;
-  font-weight: 600;
-  background-color: #393939;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.genreBox:hover {
-  background-color: #d60c0c;
+  min-height: 48px;
+  padding: 8px;
+  margin-bottom: 48px;
+  transition: 0.6s;
+  border-bottom: 1px solid black;
 }
 
 .inputContainer {
   height: 100%;
   width: 100%;
+}
+
+.faultyInput {
+  border-bottom: 1px solid #ff7676;
+}
+.correctInput {
+  border-bottom: 1px solid rgb(140, 252, 140);
+}
+
+.shakyInput {
+  animation-name: shake;
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-iteration-count: 1;
 }
 
 .inputContainer input {
@@ -49,12 +58,38 @@
   gap: 12px;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  background-color: #000000;
-  border-radius: 8px;
-  min-height: 48px;
-  padding: 8px;
-  margin-bottom: 48px;
+@keyframes shake {
+  0% {
+    transform: translateX(0px);
+  }
+  10% {
+    transform: translateX(2px);
+  }
+  20% {
+    transform: translateX(6px);
+  }
+  30% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  50% {
+    transform: translateX(-6px);
+  }
+  60% {
+    transform: translateX(4px);
+  }
+  70% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+  90% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }

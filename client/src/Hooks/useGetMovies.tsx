@@ -17,7 +17,6 @@ export default function useGetMovies(title: string) {
         setMovies(res)
         setLoading(false)
       })
-      // console.log(movies)
     } catch (error) {
       setLoading(false)
       setError(true)

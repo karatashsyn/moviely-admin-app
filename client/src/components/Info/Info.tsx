@@ -1,6 +1,6 @@
-import React from 'react'
 import styles from './info.module.css'
 type props = { infoText: string }
+
 export default function Info({ infoText }: props) {
   return (
     <div className={styles.infoContainer}>

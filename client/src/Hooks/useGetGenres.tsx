@@ -12,7 +12,6 @@ export default function useGetGenres() {
       setLoading(true)
       genreService.index().then((res: any) => {
         setGenres(res)
-        console.log(res)
         setLoading(false)
       })
     } catch (error) {

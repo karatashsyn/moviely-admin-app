@@ -16,8 +16,6 @@ export default function useSearchProducts() {
       setError(false)
       movieService.getPopulars().then((res: any) => {
         setMovies(res)
-        console.log(res)
-
         setLoading(false)
       })
     } catch (error) {

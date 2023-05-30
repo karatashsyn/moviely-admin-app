@@ -13,12 +13,10 @@ export default function PopularCard({ movie, movieHovered, movieLeaved, addMovie
   const openAttention = () => {
     setAttention(true)
     movieHovered()
-    console.log('we mouse overed')
   }
   const closeAttention = () => {
     setAttention(false)
     movieLeaved()
-    console.log('we mouse overed')
   }
 
   const handleStore = async () => {

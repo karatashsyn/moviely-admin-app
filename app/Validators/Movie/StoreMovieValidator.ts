@@ -9,7 +9,7 @@ export default class StoreMovieValidator {
     rating: schema.number.nullableAndOptional([rules.range(0, 10)]),
     apiId: schema.number.nullableAndOptional([rules.unique({ table: 'movies', column: 'api_id' })]),
     poster: schema.string.nullableAndOptional([rules.url()]),
-    description: schema.string({ trim: true }, [rules.minLength(24)]),
+    description: schema.string({ trim: true }, [rules.minLength(12)]),
     artists: schema.array
       .optional()
       .members(schema.number([rules.exists({ table: 'artists', column: 'id' })])),

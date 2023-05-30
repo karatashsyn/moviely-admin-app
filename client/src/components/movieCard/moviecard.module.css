@@ -22,6 +22,10 @@
   opacity: 0;
 }
 
+.deleted .ratingBox {
+  display: none;
+}
+
 .deleted .deletedSpan {
   opacity: 1;
 }
