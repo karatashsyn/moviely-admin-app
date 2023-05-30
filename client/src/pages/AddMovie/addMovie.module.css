@@ -4,10 +4,68 @@
   flex-basis: 100%;
   padding: 12px 24px 24px 24px;
   border-radius: 12px;
+  height: min-content;
 }
 
 .pageTitle {
   margin-bottom: 48px;
   border-bottom: 1px solid #353535;
   padding-bottom: 12px;
+}
+.genresContainer {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.genreBox {
+  padding: 2px 12px;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+  border-radius: 1rem;
+  background-color: #353535;
+  transition: 0.2s;
+}
+
+.selectedGenre {
+  background-color: #e00000;
+}
+.actionsContainer {
+  margin-top: 6rem;
+  width: 100%;
+  display: flex;
+  gap: 24px;
+  padding: 12px;
+  justify-content: end;
+}
+.genresTitle {
+  margin-bottom: 2rem;
+  color: #494949;
+}
+
+.cancelButton,
+.saveButton {
+  color: #005d1a;
+  font-weight: 700;
+  font-size: 1.4rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 2px 32px;
+  height: 3rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.saveButton {
+  background-color: #21f65c;
+}
+.saveButton:hover {
+  background-color: #4aff7d;
+}
+.cancelButton {
+  font-weight: 500;
+  color: white;
+}
+.cancelButton:hover {
+  text-decoration: underline;
 }

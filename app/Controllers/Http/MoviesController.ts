@@ -73,8 +73,7 @@ export default class MoviesController {
         movie: movie,
       })
     } catch (error) {
-      console.log(error)
-
+      console.log(error.messages.errors[0])
       response
         .status(500)
         .json({ error: error.messages[Object.keys(error.messages)[0]][0].message ?? error })

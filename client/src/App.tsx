@@ -59,7 +59,7 @@ function App() {
           </div>
           <Routes>
             <Route index element={<Home addMovie={addMovie} deleteMovie={deleteMovie} />}></Route>
-            <Route path="/add" element={<AddMovie />}></Route>
+            <Route path="/add" element={<AddMovie addMovie={addMovie} />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

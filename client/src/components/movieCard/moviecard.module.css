@@ -60,6 +60,7 @@
 }
 .ratingBox {
   background-color: #292929;
+  background-color: #000;
   position: absolute;
   top: 0;
   padding: 1px 8px;
@@ -193,18 +194,16 @@
   transition: 0.8s;
 }
 
-.highRate {
-  color: rgb(179, 255, 193);
+.card:hover .highRate {
+  color: rgb(119, 255, 144);
 }
 
-.averageRate {
+.card:hover .averageRate {
   color: rgb(255, 222, 139);
 }
 
-.lowRate {
+.card:hover .lowRate {
   color: rgb(255, 119, 119);
-}
-.card:hover .ratingBox .rate {
 }
 
 .card:hover .poster {

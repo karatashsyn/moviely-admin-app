@@ -1,0 +1,19 @@
+.infoContainer {
+  margin-bottom: 8px;
+  padding-left: 6px;
+  display: flex;
+  align-items: center;
+}
+.infoContainer .iconContainer {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+}
+.infoIcon {
+  max-width: 100%;
+  height: auto;
+}
+.infoContainer span {
+  color: #494949;
+  font-weight: 600;
+}
