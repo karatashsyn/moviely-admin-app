@@ -36,6 +36,7 @@ export default function AddMovie({ addMovie }: Props) {
       description: descriptionError(description),
       poster: posterError(poster),
     })
+    setSaveAttempted(false)
   }, [title, description, poster])
 
   const handleSave = () => {
@@ -118,7 +119,14 @@ export default function AddMovie({ addMovie }: Props) {
       </div>
 
       <div className={styles.actionsContainer}>
-        <div className={styles.cancelButton}>Cancel</div>
+        <div
+          className={styles.cancelButton}
+          onClick={() => {
+            return navigate('/')
+          }}
+        >
+          Cancel
+        </div>
         <div onClick={handleSave} className={styles.saveButton}>
           Create
         </div>

@@ -13,6 +13,7 @@ export default function Gallery({ addMovie }: any) {
   }, [])
   const openFade = () => {
     setGalleryFade(true)
+    console.log(movies)
   }
   const closeFade = () => {
     setGalleryFade(false)

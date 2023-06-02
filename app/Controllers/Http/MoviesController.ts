@@ -105,8 +105,8 @@ export default class MoviesController {
 
   public async show({ request, response, view }: HttpContextContract) {
     try {
-      const movie = await Movie.find(request.param('id'))
-      if (movie) response.status(200).json(movie)
+      const movieResult = await Movie.query().where('id', request.param('id')).preload('genres')
+      if (movieResult) response.status(200).json(movieResult[0])
       else return view.render('404')
     } catch (error) {
       return error

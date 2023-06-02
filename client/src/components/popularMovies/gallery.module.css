@@ -3,7 +3,7 @@
   aspect-ratio: 28/12;
   grid-template-columns: repeat(28, 1fr);
   grid-template-rows: repeat(12, 1fr);
-  min-width: 720px;
+  min-width: 36rem;
   gap: 10px;
   transition: opacity 0.2s;
   margin-top: 24px;

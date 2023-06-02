@@ -1,0 +1,152 @@
+.container {
+  width: 100%;
+  border-radius: 1rem;
+  position: relative;
+  border: 1px solid rgb(22, 22, 22);
+  min-height: 640px;
+  overflow: hidden;
+}
+.rateContainer {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+}
+.iconContainer .rateIcon {
+  width: 100%;
+  height: 100%;
+  width: 22px;
+  height: 22px;
+}
+.blurContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.mainInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.rateContainer {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 500;
+}
+.blurPoster {
+  width: 100%;
+  min-height: 100%;
+  opacity: 0.16;
+  filter: blur(42px);
+  background-position: 0%;
+}
+
+.editContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.6rem;
+}
+.editContainer input {
+  width: 100%;
+  display: block;
+  color: white;
+  background-color: rgba(255, 255, 255, 0);
+  outline: none;
+  border: none;
+}
+
+.editContainer .titleInput {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.descriptionInput {
+  outline: none;
+  border: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background-color: rgba(255, 255, 255, 0);
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.editContainer .descriptionInput {
+  font-size: 1.1rem;
+  height: 6rem;
+  resize: none;
+}
+.descriptionInput::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.genreBox {
+  padding: 2px 12px 3px 12px;
+  cursor: pointer;
+  color: rgb(230, 230, 230);
+  font-weight: 500;
+  border-radius: 1rem;
+  background-color: rgb(38, 38, 38);
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.selectedGenre {
+  background-color: #e00000;
+  color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 12px 1px rgba(255, 0, 0, 0.4);
+}
+
+.genresContainer {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.urlTitle {
+  display: inline;
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+}
+
+.urlContainer {
+  display: flex;
+  margin-bottom: 2.6rem;
+  gap: 8px;
+}
+.editContainer .urlInput {
+  font-size: 1.12rem;
+  display: inline;
+  color: rgb(243, 243, 243);
+}
+
+.controllersContainer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+  padding: 1rem 4rem;
+}
+
+.controllersContainer div {
+  background-color: #67ff5f;
+  padding: 0.4rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.4rem;
+  border-radius: 0.48rem;
+  cursor: pointer;
+}
+.controllersContainer .saveBtn {
+  color: #204e1e;
+}
+.controllersContainer .cancelBtn {
+  background-color: rgba(255, 0, 0, 0);
+}

@@ -7,6 +7,7 @@ import AddMovie from './Pages/AddMovie/AddMovie'
 import SnackBar from './Components/UI/SnackBar/SnackBar'
 import { adminMovieRepository } from './Repository/Movie/adminMovieRepository'
 import { Movie } from './Types/Movie'
+import EditMovie from './Pages/EditMovie/EditMovie'
 const admin = { name: 'Mehmet', surname: 'Karsu', email: 'mehmetkarsu@gmail.com' }
 function App() {
   const snackBarRef: any = useRef(null)
@@ -60,6 +61,7 @@ function App() {
           <Routes>
             <Route index element={<Home addMovie={addMovie} deleteMovie={deleteMovie} />}></Route>
             <Route path="/add" element={<AddMovie addMovie={addMovie} />}></Route>
+            <Route path="/movies/:id" element={<EditMovie />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

@@ -9,6 +9,17 @@ export class adminMovieRepository {
     return movies
   }
 
+  async show(id: number): Promise<Movie> {
+    const url = `http://127.0.0.3:3333/movies/${id}`
+    const res = await fetch(url)
+    console.log(url)
+    console.log(url)
+    console.log(url)
+
+    let movie = await res.json()
+    return movie
+  }
+
   async store(movie: Movie) {
     const url = 'http://127.0.0.3:3333/movies'
     const req = await axios.post(url, { ...movie, genres: movie.genres.map((g: any) => g.id) })
