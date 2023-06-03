@@ -58,7 +58,6 @@
   padding: 2px 32px;
   height: 3rem;
   cursor: pointer;
-  transition: 0.2s;
 }
 .saveButton {
   background-color: #21f65c;

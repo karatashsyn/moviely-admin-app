@@ -1,29 +1,34 @@
 import axios from 'axios'
 import { Movie } from '../../Types/Movie'
+import { Genre } from '../../Types/Genre'
 
 export class adminMovieRepository {
   async index(title: string): Promise<Array<Movie>> {
     const url = `http://127.0.0.3:3333/movies?title=${title}`
-    const res = await fetch(url)
-    let movies = await res.json()
+    const res = await axios.get(url)
+    let movies = await res.data
     return movies
   }
 
   async show(id: number): Promise<Movie> {
     const url = `http://127.0.0.3:3333/movies/${id}`
-    const res = await fetch(url)
-    console.log(url)
-    console.log(url)
-    console.log(url)
-
-    let movie = await res.json()
+    const res = await await axios.get(url)
+    let movie = await res.data
     return movie
   }
 
   async store(movie: Movie) {
     const url = 'http://127.0.0.3:3333/movies'
-    const req = await axios.post(url, { ...movie, genres: movie.genres.map((g: any) => g.id) })
-    const result = req
+    const result = await axios.post(url, { ...movie, genres: movie.genres.map((g: Genre) => g.id) })
+    return result
+  }
+
+  async update(movie: Movie) {
+    const url = `http://127.0.0.3:3333/movies/${movie.id}`
+    const result = await axios.put(url, {
+      ...movie,
+      genres: movie.genres.map((g: Genre) => g.id),
+    })
     return result
   }
 

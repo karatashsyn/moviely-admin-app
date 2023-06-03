@@ -5,18 +5,18 @@ import Navbar from './Components/NavBar/Navbar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AddMovie from './Pages/AddMovie/AddMovie'
 import SnackBar from './Components/UI/SnackBar/SnackBar'
-import { adminMovieRepository } from './Repository/Movie/adminMovieRepository'
 import { Movie } from './Types/Movie'
 import EditMovie from './Pages/EditMovie/EditMovie'
+import { adminMovieRepository } from './Repository/Movie/adminMovieRepository'
 const admin = { name: 'Mehmet', surname: 'Karsu', email: 'mehmetkarsu@gmail.com' }
 function App() {
   const snackBarRef: any = useRef(null)
   const [response, setResponse]: any = useState(null)
-  const movieRep = new adminMovieRepository()
+  const movieService = new adminMovieRepository()
 
   const addMovie = async (movie: Movie) => {
     try {
-      const result: any = await movieRep.store(movie)
+      const result: any = await movieService.store(movie)
       if (result.status === 200) {
         setResponse({ message: 'Added successfully', success: true })
       } else {
@@ -27,10 +27,25 @@ function App() {
       setResponse({ message: 'Something went wrong', success: false })
     }
   }
+  const updateMovie = async (movie: Movie) => {
+    try {
+      const result: any = await movieService.update(movie)
+      if (result.status === 200) {
+        setResponse({ message: 'Updated successfully', success: true })
+      } else {
+        setResponse({ message: 'Something went wrong', success: false })
+      }
+      return result
+    } catch (error) {
+      console.log(error)
+
+      setResponse({ message: 'Something went wrong', success: false })
+    }
+  }
 
   const deleteMovie = async (movie: Movie) => {
     try {
-      const result: any = await movieRep.delete(movie)
+      const result: any = await movieService.delete(movie)
       if (result.status === 204) {
         setResponse({ message: 'Deleted successfully', success: true })
       } else {
@@ -61,7 +76,7 @@ function App() {
           <Routes>
             <Route index element={<Home addMovie={addMovie} deleteMovie={deleteMovie} />}></Route>
             <Route path="/add" element={<AddMovie addMovie={addMovie} />}></Route>
-            <Route path="/movies/:id" element={<EditMovie />}></Route>
+            <Route path="/movies/:id" element={<EditMovie updateMovie={updateMovie} />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

@@ -5,9 +5,11 @@ import styles from './editMovie.module.css'
 import Input from '../../Components/Input/Input'
 import useGetGenres from '../../Hooks/useGetGenres'
 import { Genre } from '../../Types/Genre'
-type Props = {}
+type Props = {
+  updateMovie: Function
+}
 
-export default function EditMovie({}: Props) {
+export default function EditMovie({ updateMovie }: Props) {
   const { genres } = useGetGenres()
   const params = useParams()
   const navigate = useNavigate()
@@ -16,6 +18,9 @@ export default function EditMovie({}: Props) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [poster, setPoster] = useState('')
+  const [titleError, setTitleError] = useState(false)
+  const [descriptionError, setDescriptionError] = useState(false)
+  const [posterError, setPosterError] = useState(false)
 
   const ifSelected = (testedGenre: Genre) => {
     return selectedGenres?.map((g: Genre) => g.id).includes(testedGenre.id)
@@ -39,6 +44,34 @@ export default function EditMovie({}: Props) {
       setPoster(movie.poster ?? '')
     }
   }, [movie])
+
+  const pattern = new RegExp(
+    '^((?:https?:\\/\\/)?(?:www\\.)?(?:[a-zA-Z\\d]+\\.){1,2}[a-zA-Z]{2,}(?:\\/\\S*)?)$',
+    'i'
+  )
+  useEffect(() => {
+    setTitleError(title.length >= 2 ? false : true)
+    setDescriptionError(description.length >= 12 ? false : true)
+    setPosterError(!pattern.test(poster))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [description, title, poster])
+
+  const handleTitleChange = (e: any) => {
+    setTitle(e.target.value)
+  }
+  const handleDescriptionChange = (e: any) => {
+    setDescription(e.target.value)
+  }
+  const handlePosterChange = (e: any) => {
+    setPoster(e.target.value)
+  }
+  const handleSave = () => {
+    if (!titleError && !posterError && !descriptionError) {
+      updateMovie({ ...movie, title, description, poster, genres: selectedGenres })
+      navigate('/')
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.blurContainer}>
@@ -48,10 +81,12 @@ export default function EditMovie({}: Props) {
         <div className={styles.mainInfoContainer}>
           <input
             onChange={(e) => {
-              setTitle(e.target.value)
+              handleTitleChange(e)
             }}
             spellCheck={false}
-            className={styles.titleInput}
+            className={
+              titleError ? `${styles.titleInput} ${styles.faultyInput}` : `${styles.titleInput}`
+            }
             value={title}
           />
           <div className={styles.rateContainer}>
@@ -74,21 +109,27 @@ export default function EditMovie({}: Props) {
         </div>
         <textarea
           onChange={(e) => {
-            setDescription(e.target.value)
+            handleDescriptionChange(e)
           }}
           spellCheck={false}
-          className={styles.descriptionInput}
+          className={
+            descriptionError
+              ? `${styles.descriptionInput} ${styles.faultyInput}`
+              : `${styles.descriptionInput}`
+          }
           value={description}
         />
         <div className={styles.urlContainer}>
-          <h3 className={styles.urlTitle}>Poster: </h3>
+          <h3>Poster: </h3>
 
           <input
             onChange={(e) => {
-              setPoster(e.target.value)
+              handlePosterChange(e)
             }}
             type="text"
-            className={styles.urlInput}
+            className={
+              posterError ? `${styles.urlInput} ${styles.faultyInput}` : `${styles.urlInput}`
+            }
             value={poster}
           />
         </div>
@@ -117,7 +158,9 @@ export default function EditMovie({}: Props) {
           >
             Cancel
           </div>
-          <div className={styles.saveBtn}>Save</div>
+          <div onClick={handleSave} className={styles.saveBtn}>
+            Save
+          </div>
         </div>
       </div>
     </div>

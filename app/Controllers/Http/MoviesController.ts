@@ -89,6 +89,10 @@ export default class MoviesController {
       if (payload.artists) movie?.related('artists').sync(payload.artists)
       response.status(200).json(movie)
     } catch (error) {
+      console.log(error)
+      console.log(error)
+      console.log(error)
+
       return error
     }
   }

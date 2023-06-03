@@ -72,7 +72,9 @@ export default function MovieCard({ movie, deleteMovie, addMovie }: props) {
   return (
     <div onClick={switchToEdit} className={cardClassName}>
       <span className={styles.deletedSpan}>DELETED</span>
-      <img className={styles.poster} src={movie.poster ?? 'assets/NoImageImage2.png'} alt="" />
+      <NavLink to={`/movies/${movie.id}`}>
+        <img className={styles.poster} src={movie.poster ?? 'assets/NoImageImage2.png'} alt="" />
+      </NavLink>
       <div className={styles.ratingBox}>
         <div className={styles.iconContainer}>
           <svg

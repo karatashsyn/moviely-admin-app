@@ -8,7 +8,7 @@ export default class UpdateMovieValidator {
     title: schema.string.optional({ trim: true }),
     poster: schema.string.optional([rules.url()]),
     rating: schema.number.optional([rules.range(0, 10)]),
-    description: schema.string.optional({ trim: true }),
+    description: schema.string.optional({ trim: true }, [rules.minLength(12)]),
     artists: schema.array
       .optional()
       .members(schema.number([rules.exists({ table: 'artists', column: 'id' })])),
